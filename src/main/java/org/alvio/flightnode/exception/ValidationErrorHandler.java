@@ -5,8 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,5 +45,24 @@ public class ValidationErrorHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<Map<String, String>> handleMissingParam(MissingServletRequestParameterException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put(ex.getParameterName(), "Required parameter '" + ex.getParameterName() + "' is missing.");
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<Map<String, String>> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        Map<String, String> error = new HashMap<>();
+
+        if (ex.getRequiredType() != null && ex.getRequiredType().getSimpleName().equals("LocalDate")) {
+            error.put(ex.getName(), "Invalid date format. Expected: yyyy-mm-dd.");
+        } else {
+            error.put(ex.getName(), "Invalid value for parameter.");
+        }
+
+        return ResponseEntity.badRequest().body(error);
+    }
 
 }

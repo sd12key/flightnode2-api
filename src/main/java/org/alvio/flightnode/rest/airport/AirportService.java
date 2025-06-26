@@ -45,6 +45,10 @@ public class AirportService {
 
 
     public Airport addAirport(Airport airport) {
+        if (airport.getId() != null) {
+            throw new IllegalArgumentException("ID must not be provided when creating a new record.");
+        }
+
         Optional <Airport> existing = airportRepository.findByCode(airport.getCode());
         if (existing.isPresent()) {
             throw new IllegalArgumentException("Airport '" + airport.getName() +
@@ -64,6 +68,10 @@ public class AirportService {
     public List<Airport> addAirports(List<Airport> airports) {
         List<String> duplicates = new ArrayList<>();
         for (Airport airport : airports) {
+            if (airport.getId() != null) {
+                throw new IllegalArgumentException("ID must not be provided when creating a new record.");
+            }
+
             Optional<Airport> existing = airportRepository.findByCode(airport.getCode());
             if (existing.isPresent()) {
                 duplicates.add(airport.getName() + " (" + airport.getCode() + ")");
@@ -80,6 +88,11 @@ public class AirportService {
     }
 
     public Airport updateAirport(Long id, Airport updatedAirport) {
+
+        if (updatedAirport.getId() != null && !updatedAirport.getId().equals(id)) {
+            throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
+        }
+
         Airport existingAirport = getAirportById(id);
 
         Optional<Airport> duplicateAirport = airportRepository.findByCode(updatedAirport.getCode());
@@ -100,7 +113,7 @@ public class AirportService {
         Airport airport = getAirportById(id);
 
         if (!airport.getDepartureFlights().isEmpty() || !airport.getArrivalFlights().isEmpty()) {
-            throw new IllegalStateException("Airport cannot be deleted: it is linked to existing flights.");
+            throw new IllegalArgumentException("Airport cannot be deleted: it is linked to existing flights.");
         }
 
         airportRepository.deleteById(id);

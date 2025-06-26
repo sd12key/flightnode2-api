@@ -2,6 +2,7 @@ package org.alvio.flightnode.rest.airport;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.city.City;
@@ -36,12 +37,10 @@ public class Airport {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @OneToMany(mappedBy = "departureAirport")
-//    @JsonIgnore
+    @OneToMany(mappedBy = "departureAirport", fetch = FetchType.EAGER)
     private List<Flight> departureFlights = new ArrayList<>();
 
-    @OneToMany(mappedBy = "arrivalAirport")
-//    @JsonIgnore
+    @OneToMany(mappedBy = "arrivalAirport", fetch = FetchType.EAGER)
     private List<Flight> arrivalFlights = new ArrayList<>();
 
     public Long getId() {

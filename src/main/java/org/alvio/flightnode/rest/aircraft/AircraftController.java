@@ -25,8 +25,7 @@ public class AircraftController {
                                                            defaultValue = "false") boolean showAirports) {
         List<Aircraft> aircrafts = aircraftService.getAllAircrafts(showAirports);
         List<AircraftDTO> aircraftsDto = aircrafts.stream()
-                .map(AircraftMapper::toAircraftDTO)
-                .toList();
+                .map(aircraft -> AircraftMapper.toAircraftDTO(aircraft, showAirports)).toList();
         return ResponseEntity.ok(aircraftsDto);
     }
 
@@ -45,23 +44,23 @@ public class AircraftController {
 
     @PostMapping("/aircraft")
     public ResponseEntity<?> addAircraft(@Valid @RequestBody Aircraft aircraft) {
-        Aircraft created = aircraftService.addAircraft(aircraft);
-        AircraftDTO createdDto = AircraftMapper.toAircraftDTO(created);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdDto);
+        Aircraft createdAircraft = aircraftService.addAircraft(aircraft);
+        AircraftDTO createdAircraftDto = AircraftMapper.toAircraftDTO(createdAircraft);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAircraftDto);
     }
 
     @PostMapping("/aircrafts")
     public ResponseEntity<?> addAircrafts(@Valid @RequestBody List<Aircraft> aircrafts) {
-        List<Aircraft> created = aircraftService.addAircrafts(aircrafts);
-        List<AircraftDTO> createdDtos = created.stream().map(AircraftMapper::toAircraftDTO).toList();
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdDtos);
+        List<Aircraft> createdAircrafts = aircraftService.addAircrafts(aircrafts);
+        List<AircraftDTO> createdAircraftsDto = createdAircrafts.stream().map(AircraftMapper::toAircraftDTO).toList();
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAircraftsDto);
     }
 
     @PutMapping("/aircraft/{id}")
     public ResponseEntity<?> updateAircraft(@PathVariable Long id, @Valid @RequestBody Aircraft aircraft) {
         try {
-            Aircraft updated = aircraftService.updateAircraft(id, aircraft);
-            return ResponseEntity.ok(AircraftMapper.toAircraftDTO(updated));
+            Aircraft updatedAircraft = aircraftService.updateAircraft(id, aircraft);
+            return ResponseEntity.ok(AircraftMapper.toAircraftDTO(updatedAircraft));
         } catch (NoSuchElementException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
         }
@@ -74,6 +73,9 @@ public class AircraftController {
             return ResponseEntity.noContent().build();
         } catch (NoSuchElementException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
+
     }
 }
