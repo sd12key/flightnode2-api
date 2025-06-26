@@ -1,7 +1,12 @@
 package org.alvio.flightnode.rest.aircraft;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.alvio.flightnode.rest.flight.Flight;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Aircraft {
@@ -33,9 +38,8 @@ public class Aircraft {
     @Column(nullable = false)
     private int capacity;
 
-    // relationship to flights (one aircraft -> many flights)
-    // @OneToMany(mappedBy = "aircraft", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<Flight> flights;
+    @OneToMany(mappedBy = "aircraft", fetch = FetchType.EAGER)
+    private List<Flight> flights = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -67,5 +71,9 @@ public class Aircraft {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
     }
 }

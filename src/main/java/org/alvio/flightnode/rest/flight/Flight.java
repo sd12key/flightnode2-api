@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.flight;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.aircraft.Aircraft;
@@ -31,17 +32,17 @@ public class Flight {
     private LocalDateTime arrivalTime;
 
     // Many-to-one : AIRCRAFT -> MANY FLIGHTS
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "aircraft_id", nullable = false)
     private Aircraft aircraft;
 
     // Many-to-one : DEPARTURE AIRPORT -> MANY FLIGHTS
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departure_airport_id", nullable = false)
     private Airport departureAirport;
 
     // Many-to-one : ARRIVAL AIRPORT -> MANY FLIGHTS
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
 
@@ -52,6 +53,7 @@ public class Flight {
         Duration d = Duration.between(departureTime, arrivalTime);
         return !d.isNegative() && d.toMinutes() >= 30 && d.toHours() <= 24;
     }
+
     public Long getId() {
         return id;
     }

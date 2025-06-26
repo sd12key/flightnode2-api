@@ -46,6 +46,10 @@ public class CityService {
     }
 
     public City addCity(City city) {
+        if (city.getId() != null) {
+            throw new IllegalArgumentException("ID must not be provided when creating a new record.");
+        }
+
         Optional<City> existing = cityRepository.findByNameAndState(city.getName(), city.getState());
         if (existing.isPresent()) {
             throw new IllegalArgumentException("City with name '" + city.getName() + "' and state '" + city.getState() + "' already exists.");
@@ -57,6 +61,10 @@ public class CityService {
         List<String> duplicates = new ArrayList<>();
 
         for (City city : cities) {
+            if (city.getId() != null) {
+                throw new IllegalArgumentException("ID must not be provided when creating a new record.");
+            }
+
             Optional<City> existingCity = cityRepository.findByNameAndState(city.getName(), city.getState());
             if (existingCity.isPresent()) {
                 duplicates.add(city.getName() + "(" + city.getState() + ")");
@@ -73,6 +81,11 @@ public class CityService {
     }
 
     public City updateCity(Long id, City updatedCity) {
+
+        if (updatedCity.getId() != null && !updatedCity.getId().equals(id)) {
+            throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
+        }
+
         City existingCity = getCityById(id, true);
 
         Optional<City> duplicateCity = cityRepository.findByNameAndState(updatedCity.getName(), updatedCity.getState());
@@ -92,7 +105,7 @@ public class CityService {
         City city = getCityById(id, true);
 
         if (!city.getAirports().isEmpty()) {
-            throw new IllegalStateException("City cannot be deleted: it is linked to existing airports.");
+            throw new IllegalArgumentException("City cannot be deleted: it is linked to existing airports.");
         }
 
         cityRepository.deleteById(id);

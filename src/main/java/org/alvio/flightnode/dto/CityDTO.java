@@ -10,7 +10,7 @@ public class CityDTO {
     private String name;
     private String state;
     private int population;
-    private List<AirportSummaryDTO> airports; // optional: may be null if not included
+    private List<AirportSummaryDTO> airports;
 
     public CityDTO(Long id, String name, String state, int population, List<AirportSummaryDTO> airports) {
         this.id = id;

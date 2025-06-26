@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.aircraft;
 
+import org.alvio.flightnode.rest.city.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,33 +16,50 @@ public class AircraftService {
 
     public List<Aircraft> getAllAircrafts(boolean showAirports) {
         return showAirports ?
-                aircraftRepository.findAll() :
+                aircraftRepository.findAllWithAirports() :
                 aircraftRepository.findAll();
     }
 
     public Aircraft getAircraftById(Long id, boolean showAirports) {
         Optional<Aircraft> resultAircraft = showAirports ?
-                aircraftRepository.findById(id) :
+                aircraftRepository.findWithAirportsById(id) :
                 aircraftRepository.findById(id);
         if (resultAircraft.isEmpty()) {
-            throw new NoSuchElementException("Aircraft with id " + id + " not found.");
+            throw new NoSuchElementException("Aircraft with ID " + id + " not found.");
         }
         return resultAircraft.get();
     }
+
 
 //    public Aircraft getAircraftById(Long id) {
 //        return getAircraftById(id, false);
 //    }
 
     public Aircraft addAircraft(Aircraft aircraft) {
+        if (aircraft.getId() != null) {
+            throw new IllegalArgumentException("ID must not be provided when creating a new record. Aborted.");
+        }
+
         return aircraftRepository.save(aircraft);
     }
 
     public List<Aircraft> addAircrafts(List<Aircraft> aircrafts) {
+
+        for (Aircraft aircraft : aircrafts) {
+            if (aircraft.getId() != null) {
+                throw new IllegalArgumentException("ID must not be provided when creating a new record. Aborted.");
+            }
+        }
+
         return aircraftRepository.saveAll(aircrafts);
     }
 
     public Aircraft updateAircraft(Long id, Aircraft updatedAircraft) {
+
+        if (updatedAircraft.getId() != null && !updatedAircraft.getId().equals(id)) {
+            throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
+        }
+
         Aircraft existingAircraft = getAircraftById(id, false);
 
         existingAircraft.setType(updatedAircraft.getType());
@@ -52,8 +70,10 @@ public class AircraftService {
     }
 
     public void deleteAircraftById(Long id) {
-        Aircraft deletingAircraft = getAircraftById(id, true);
-        // future: check if aircraft.getFlights().isEmpty()
+        Aircraft deletingAircraft = getAircraftById(id, false);
+        if (!deletingAircraft.getFlights().isEmpty()) {
+            throw new IllegalArgumentException("Aircraft cannot be deleted: it is linked to existing flights.");
+        }
         aircraftRepository.deleteById(id);
     }
 }

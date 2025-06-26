@@ -102,7 +102,7 @@ public class AirportController {
             return ResponseEntity.noContent().build();
         } catch (NoSuchElementException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalStateException ex) {
+        } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
     }
