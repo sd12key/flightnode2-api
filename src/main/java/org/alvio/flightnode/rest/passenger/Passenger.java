@@ -62,16 +62,14 @@ public class Passenger {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = (firstName != null) ? firstName.trim() : null;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName.trim(); }
 
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = (lastName != null) ? lastName.trim() : null;
+        this.lastName = lastName.trim();
     }
 
     public String getPhoneNumber() {
@@ -79,7 +77,7 @@ public class Passenger {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = (phoneNumber != null) ? phoneNumber.trim() : null;
+        this.phoneNumber = phoneNumber.trim();
     }
 
     public List<Flight> getFlights() {

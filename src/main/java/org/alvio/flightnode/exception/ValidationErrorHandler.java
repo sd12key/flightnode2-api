@@ -1,5 +1,6 @@
 package org.alvio.flightnode.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -12,7 +13,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class ValidationErrorHandler {
 
-    // only handles @Valid errors
+    // Handles @RequestBody validation errors (@Valid)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationErrors(
             MethodArgumentNotValidException ex) {
@@ -26,4 +27,20 @@ public class ValidationErrorHandler {
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
+
+    // Handles @RequestParam validation errors (@Validated)
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Map<String, String>> handleParamValidationErrors(
+            ConstraintViolationException ex) {
+
+        Map<String, String> errors = new HashMap<>();
+        ex.getConstraintViolations().forEach(violation -> {
+            String path = violation.getPropertyPath().toString();
+            String paramName = path.substring(path.lastIndexOf('.') + 1);
+            errors.put(paramName, violation.getMessage());
+        });
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+
 }

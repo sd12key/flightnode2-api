@@ -1,8 +1,14 @@
 package org.alvio.flightnode.rest.airport;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.city.City;
+import org.alvio.flightnode.rest.flight.Flight;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Airport {
@@ -25,9 +31,18 @@ public class Airport {
     @Column(nullable = false, unique = true, length = 3)
     private String code;
 
-    @ManyToOne(optional = false)
+    @NotNull(message = "City ID is required.")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
+
+    @OneToMany(mappedBy = "departureAirport")
+//    @JsonIgnore
+    private List<Flight> departureFlights = new ArrayList<>();
+
+    @OneToMany(mappedBy = "arrivalAirport")
+//    @JsonIgnore
+    private List<Flight> arrivalFlights = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -50,15 +65,23 @@ public class Airport {
     }
 
     public void setName(String name) {
-        this.name = (name != null) ? name.trim() : null;
+        this.name = name.trim();
     }
 
     public void setCode(String code) {
-        this.code = (code != null) ? code.trim().toUpperCase() : null;
+        this.code = code.trim().toUpperCase();
     }
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public List<Flight> getDepartureFlights() {
+        return departureFlights;
+    }
+
+    public List<Flight> getArrivalFlights() {
+        return arrivalFlights;
     }
 
 }
