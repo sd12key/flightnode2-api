@@ -2,6 +2,10 @@ package org.alvio.flightnode.rest.passenger;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.alvio.flightnode.rest.flight.Flight;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Passenger {
@@ -23,7 +27,7 @@ public class Passenger {
     @Column(nullable = false, length = 30)
     private String firstName;
 
-    @NotBlank(message = "Last name is required")
+    @NotBlank(message = "Last name is required.")
     @Pattern(
             regexp = "^[A-Za-z][A-Za-z0-9 .'’-]*$",
             message = "English letters, numbers, spaces, hyphens, apostrophes only."
@@ -36,6 +40,15 @@ public class Passenger {
     @Pattern(regexp = "^\\d{10}$", message = "Phone number must be 10 digits.")
     @Column(nullable = false, length = 10)
     private String phoneNumber;
+
+    // Many-to-many : PASSENGERS <-> FLIGHTS
+    @ManyToMany
+    @JoinTable(
+            name = "passenger_flight",
+            joinColumns = @JoinColumn(name = "passenger_id"),
+            inverseJoinColumns = @JoinColumn(name = "flight_id")
+    )
+    private List<Flight> flights = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -67,6 +80,14 @@ public class Passenger {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = (phoneNumber != null) ? phoneNumber.trim() : null;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = (flights != null) ? flights : new ArrayList<>();
     }
 
 }
