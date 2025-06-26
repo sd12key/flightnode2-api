@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.city;
 
+import org.alvio.flightnode.exception.ConflictException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class CityService {
 
         Optional<City> existing = cityRepository.findByNameAndState(city.getName(), city.getState());
         if (existing.isPresent()) {
-            throw new IllegalArgumentException("City with name '" + city.getName() + "' and state '" + city.getState() + "' already exists.");
+            throw new ConflictException("City with name '" + city.getName() + "' and state '" + city.getState() + "' already exists.");
         }
         return cityRepository.save(city);
     }
@@ -71,7 +72,7 @@ public class CityService {
             }
         }
 
-        if (!duplicates.isEmpty()) throw new IllegalArgumentException(
+        if (!duplicates.isEmpty()) throw new ConflictException(
                 duplicates.size() == 1 ?
                         "City " + duplicates.get(0) + " already exists, aborted." :
                         "Cities " + String.join(", ", duplicates) + " already exist, aborted."
@@ -91,7 +92,7 @@ public class CityService {
         Optional<City> duplicateCity = cityRepository.findByNameAndState(updatedCity.getName(), updatedCity.getState());
 
         if (duplicateCity.isPresent() && !duplicateCity.get().getId().equals(id)) {
-            throw new IllegalArgumentException("City with name '" + updatedCity.getName() + "' and state '" + updatedCity.getState() + "' already exists.");
+            throw new ConflictException("City with name '" + updatedCity.getName() + "' and state '" + updatedCity.getState() + "' already exists.");
         }
 
         existingCity.setName(updatedCity.getName());
@@ -105,7 +106,7 @@ public class CityService {
         City city = getCityById(id, true);
 
         if (!city.getAirports().isEmpty()) {
-            throw new IllegalArgumentException("City cannot be deleted: it is linked to existing airports.");
+            throw new ConflictException("City cannot be deleted: it is linked to existing airports.");
         }
 
         cityRepository.deleteById(id);

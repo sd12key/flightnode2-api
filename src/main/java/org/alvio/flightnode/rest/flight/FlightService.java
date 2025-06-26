@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.flight;
 
+import org.alvio.flightnode.exception.ConflictException;
 import org.alvio.flightnode.rest.aircraft.Aircraft;
 import org.alvio.flightnode.rest.aircraft.AircraftRepository;
 import org.alvio.flightnode.rest.aircraft.AircraftService;
@@ -55,13 +56,13 @@ public class FlightService {
         }
 
         if (flight.getAircraft() == null || flight.getAircraft().getId() == null) {
-            throw new IllegalArgumentException("Aircraft ID must be provided.");
+            throw new ConflictException("Valid aircraft ID must be provided.");
         }
         if (flight.getDepartureAirport() == null || flight.getDepartureAirport().getId() == null) {
-            throw new IllegalArgumentException("Departure airport ID must be provided.");
+            throw new ConflictException("Valid departure airport ID must be provided.");
         }
         if (flight.getArrivalAirport() == null || flight.getArrivalAirport().getId() == null) {
-            throw new IllegalArgumentException("Arrival airport ID must be provided.");
+            throw new ConflictException("Valid arrival airport ID must be provided.");
         }
 
         Aircraft aircraft = aircraftService.getAircraftById(flight.getAircraft().getId(), false);
@@ -87,7 +88,7 @@ public class FlightService {
         if (updatedFlight.getId() != null && !updatedFlight.getId().equals(id)) {
             throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
         }
-        getFlightById(id);  // if not found, this will throw an exception
+        getFlightById(id);
         validateAndCreateFullFlight(updatedFlight);
         return flightRepository.save(updatedFlight);
     }

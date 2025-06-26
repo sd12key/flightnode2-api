@@ -34,13 +34,9 @@ public class CityController {
     public ResponseEntity<?> getCityById(@PathVariable Long id,
                                          @RequestParam(name = "show-airports", required = false,
                                                        defaultValue = "false") boolean showAirports) {
-        try {
-            City city = cityService.getCityById(id, showAirports);
-            CityDTO cityDto = CityMapper.toCityDTO(city, showAirports);
-            return ResponseEntity.ok(cityDto);
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
+        City city = cityService.getCityById(id, showAirports);
+        CityDTO cityDto = CityMapper.toCityDTO(city, showAirports);
+        return ResponseEntity.ok(cityDto);
     }
 
     @GetMapping("/city-search")
@@ -48,69 +44,43 @@ public class CityController {
             @RequestParam(required = false) String name,
             @RequestParam(name = "show-airports", required = false,
                     defaultValue = "false") boolean showAirports) {
-        try {
-            List<City> result = cityService.findCities(name, showAirports);
-            List<CityDTO> resultDto = result.stream()
-                    .map(city -> CityMapper.toCityDTO(city, showAirports))
-                    .toList();
-            return ResponseEntity.ok(resultDto);
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.badRequest().body(Map.of("error", ex.getMessage()));
-        }
+
+        List<City> result = cityService.findCities(name, showAirports);
+        List<CityDTO> resultDto = result.stream()
+                .map(city -> CityMapper.toCityDTO(city, showAirports))
+                .toList();
+        return ResponseEntity.ok(resultDto);
     }
 
-    // POST one city
     @PostMapping("/city")
     public ResponseEntity<?> addCity(@Valid @RequestBody City city) {
-        try {
-            City createdCity = cityService.addCity(city);
-            CityDTO createdCityDto = CityMapper.toCityDTO(createdCity, false);
-            // 201
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdCityDto);
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        City createdCity = cityService.addCity(city);
+        CityDTO createdCityDto = CityMapper.toCityDTO(createdCity, false);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCityDto);
     }
 
     // POST multiple cities, batch fails if any city is a duplicate
     @PostMapping("/cities")
     public ResponseEntity<?> addCities(@Valid @RequestBody List<City> cities) {
-        try {
-            List<City> createdCities = cityService.addCities(cities);
-            List<CityDTO> createdCitiesDto = createdCities.stream()
-                    .map(city -> CityMapper.toCityDTO(city, false))
-                    .toList();
-            // 201
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdCitiesDto);
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+
+        List<City> createdCities = cityService.addCities(cities);
+        List<CityDTO> createdCitiesDto = createdCities.stream()
+                .map(city -> CityMapper.toCityDTO(city, false))
+                .toList();
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCitiesDto);
     }
 
-    // PUT update city by ID
     @PutMapping("/city/{id}")
     public ResponseEntity<?> updateCity(@PathVariable Long id, @Valid @RequestBody City city) {
-        try {
-            City updated = cityService.updateCity(id, city);
-            CityDTO updatedDto = CityMapper.toCityDTO(updated, false);
-            return ResponseEntity.ok(updatedDto);
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        City updated = cityService.updateCity(id, city);
+        CityDTO updatedDto = CityMapper.toCityDTO(updated, false);
+        return ResponseEntity.ok(updatedDto);
     }
 
     @DeleteMapping("/city/{id}")
     public ResponseEntity<?> deleteCity(@PathVariable Long id) {
-        try {
-            cityService.deleteCityById(id);
-            return ResponseEntity.noContent().build();
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        cityService.deleteCityById(id);
+        return ResponseEntity.noContent().build();
     }
 
 
