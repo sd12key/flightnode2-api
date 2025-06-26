@@ -33,7 +33,7 @@ public class Aircraft {
     @Column(nullable = false)
     private int capacity;
 
-    // later: relationship to flights (one aircraft -> many flights)
+    // relationship to flights (one aircraft -> many flights)
     // @OneToMany(mappedBy = "aircraft", cascade = CascadeType.ALL, orphanRemoval = true)
     // private List<Flight> flights;
 

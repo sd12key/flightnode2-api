@@ -21,18 +21,18 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "City name is required")
-    @Pattern(regexp = "^[a-zA-Z .'-]+$", message = "Invalid city name")
-    @Size(max = 50, message = "Maximum 50 characters")
+    @NotBlank(message = "City name is required.")
+    @Pattern(regexp = "^[a-zA-Z .'-]+$", message = "Invalid city name.")
+    @Size(max = 50, message = "Maximum 50 characters.")
     @Column(nullable = false, length = 50)
     private String name;
 
-    @NotBlank(message = "State is required")
-    @Pattern(regexp = "^[a-zA-Z]{2}$", message = "State must be 2-letters")
+    @NotBlank(message = "State is required.")
+    @Pattern(regexp = "^[a-zA-Z]{2}$", message = "State must be 2-letters.")
     @Column(nullable = false, length = 2)
     private String state;
 
-    @Min(value = 1, message = "Population must be positive")
+    @Min(value = 1, message = "Population must be positive.")
     private int population;
 
     public long getId() {

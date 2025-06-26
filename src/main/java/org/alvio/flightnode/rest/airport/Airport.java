@@ -14,21 +14,20 @@ public class Airport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Airport name is required")
-    @Pattern(regexp = "^[a-zA-Z0-9 .'-]+$", message = "Invalid airport name")
-    @Size(max = 50, message = "Maximum 50 characters")
+    @NotBlank(message = "Airport name is required.")
+    @Pattern(regexp = "^[a-zA-Z0-9 .'-]+$", message = "Invalid airport name.")
+    @Size(max = 50, message = "Maximum 50 characters.")
     @Column(nullable = false, length = 50)
     private String name;
 
-    @NotBlank(message = "Airport code is required")
-    @Pattern(regexp = "^[a-zA-Z]{3}$", message = "Code must be 3 letters")
+    @NotBlank(message = "Airport code is required.")
+    @Pattern(regexp = "^[a-zA-Z]{3}$", message = "Code must be 3 letters.")
     @Column(nullable = false, unique = true, length = 3)
     private String code;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
-
 
     public Long getId() {
         return id;
