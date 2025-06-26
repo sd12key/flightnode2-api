@@ -12,7 +12,7 @@ public class AirportMapper {
         return new AirportDTO(airport.getId(), airport.getName(), airport.getCode(), city);
     }
 
-    public static AirportSummaryDTO toSummaryNoCity(Airport airport) {
+    public static AirportSummaryDTO toSummary(Airport airport) {
         return new AirportSummaryDTO(airport.getId(), airport.getName(), airport.getCode());
     }
 }

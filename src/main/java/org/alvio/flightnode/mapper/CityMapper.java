@@ -11,7 +11,7 @@ public class CityMapper {
     public static CityDTO toCityDTO(City city, boolean includeAirports) {
         List<AirportSummaryDTO> airports = includeAirports && city.getAirports() != null
                 ? city.getAirports().stream()
-                .map(AirportMapper::toSummaryNoCity)
+                .map(AirportMapper::toSummary)
                 .collect(Collectors.toList())
                 : null;
 
