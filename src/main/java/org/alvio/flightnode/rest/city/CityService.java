@@ -14,26 +14,35 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
-    public List<City> getAllCities() {
-        return (List<City>) cityRepository.findAll();
+    public List<City> getAllCities(boolean showAirports) {
+        return showAirports ?
+                cityRepository.findAllWithAirports() :
+                cityRepository.findAll();
+    }
+
+    public City getCityById(Long id, boolean showAirports) {
+        Optional<City> cityResult = showAirports ?
+                cityRepository.findWithAirportsById(id) :
+                cityRepository.findById(id);
+        if (cityResult.isEmpty()) {
+            throw new NoSuchElementException("City with id " + id + " not found");
+        }
+        return cityResult.get();
     }
 
     public City getCityById(Long id) {
-        return cityRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("City with id " + id + " not found"));
+        return getCityById(id, false);
     }
 
-    public List<City> findCities(String name, String state) {
-        if (name != null && state != null) {
-            return cityRepository.findByNameContainingIgnoreCaseAndState(name, state);
-        } else if (name != null) {
-            return cityRepository.findByNameContainingIgnoreCase(name);
-        } else if (state != null) {
-            return cityRepository.findByState(state);
-        } else {
-            // alternatively, can return an empty list
-            return cityRepository.findAll();
+    public List<City> findCities(String name, boolean showAirports) {
+        if (name == null) {
+            return showAirports ?
+                    cityRepository.findAllWithAirports() :
+                    cityRepository.findAll();
         }
+        return showAirports ?
+                cityRepository.findWithAirportsByNameContainingIgnoreCase(name) :
+                cityRepository.findByNameContainingIgnoreCase(name);
     }
 
     public City addCity(City city) {
@@ -60,20 +69,15 @@ public class CityService {
                         "Cities " + String.join(", ", duplicates) + " already exist, aborted."
         );
 
-        //        Iterable<City> saved = cityRepository.saveAll(cities);
-        //        List<City> result = new ArrayList<>();
-        //        saved.forEach(result::add);
-        //        return result;
         return cityRepository.saveAll(cities);
     }
 
     public City updateCity(Long id, City updatedCity) {
-        City existingCity = cityRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("City with ID " + id + " not found"));
+        City existingCity = getCityById(id);
 
         Optional<City> duplicateCity = cityRepository.findByNameAndState(updatedCity.getName(), updatedCity.getState());
 
-        if (duplicateCity.isPresent() && duplicateCity.get().getId() != id) {
+        if (duplicateCity.isPresent() && !duplicateCity.get().getId().equals(id)) {
             throw new IllegalArgumentException("City with name '" + updatedCity.getName() + "' and state '" + updatedCity.getState() + "' already exists.");
         }
 
@@ -85,11 +89,17 @@ public class CityService {
     }
 
     public void deleteCityById(Long id) {
-        if (!cityRepository.existsById(id)) {
-            throw new NoSuchElementException("City with ID " + id + " not found.");
+        City city = getCityById(id);
+
+        if (!city.getAirports().isEmpty()) {
+            throw new IllegalStateException("City cannot be deleted: it is linked to existing airports.");
         }
+
         cityRepository.deleteById(id);
     }
+
+
+
 
 
 }

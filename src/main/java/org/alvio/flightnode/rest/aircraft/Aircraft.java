@@ -50,7 +50,7 @@ public class Aircraft {
     }
 
     public void setModel(String model) {
-        this.model = (model != null) ? model.trim() : null;
+        this.model = model.trim();
     }
 
     public String getAirlineName() {
@@ -58,7 +58,7 @@ public class Aircraft {
     }
 
     public void setAirlineName(String airlineName) {
-        this.airlineName = (airlineName != null) ? airlineName.trim() : null;
+        this.airlineName = airlineName.trim();
     }
 
     public int getCapacity() {

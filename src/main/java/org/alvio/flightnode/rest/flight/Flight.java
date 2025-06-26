@@ -65,7 +65,7 @@ public class Flight {
     }
 
     public void setFlightNumber(String flightNumber) {
-        this.flightNumber = (flightNumber != null) ? flightNumber.trim().toUpperCase() : null;
+        this.flightNumber = flightNumber.trim().toUpperCase();
     }
 
     public LocalDateTime getDepartureTime() {

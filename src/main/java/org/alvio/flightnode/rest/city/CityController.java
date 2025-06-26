@@ -1,6 +1,8 @@
 package org.alvio.flightnode.rest.city;
 
 import jakarta.validation.Valid;
+import org.alvio.flightnode.dto.CityDTO;
+import org.alvio.flightnode.mapper.CityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,53 +20,70 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
-    // GET all cities
     @GetMapping("/cities")
-    public List<City> getAllCities() {
-        return cityService.getAllCities();
+    public ResponseEntity<?> getAllCities(@RequestParam(name = "show-airports", required = false,
+                                                        defaultValue = "false") boolean showAirports) {
+        List<City> cities = cityService.getAllCities(showAirports);
+        List<CityDTO> citiesDto = cities.stream()
+                .map(city -> CityMapper.toCityDTO(city, showAirports))
+                .toList();
+        return ResponseEntity.ok(citiesDto);
     }
 
     @GetMapping("/city/{id}")
-    public ResponseEntity<?> getCityById(@PathVariable Long id) {
+    public ResponseEntity<?> getCityById(@PathVariable Long id,
+                                         @RequestParam(name = "show-airports", required = false,
+                                                       defaultValue = "false") boolean showAirports) {
         try {
-            City city = cityService.getCityById(id);
-            return ResponseEntity.ok(city);
+            City city = cityService.getCityById(id, showAirports);
+            CityDTO cityDto = CityMapper.toCityDTO(city, showAirports);
+            return ResponseEntity.ok(cityDto);
         } catch (NoSuchElementException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
         }
     }
 
     @GetMapping("/city-search")
-    public ResponseEntity<List<City>> searchCities(
+    public ResponseEntity<?> searchCities(
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) String state) {
-
-        List<City> result = cityService.findCities(name, state);
-        return ResponseEntity.ok(result);
+            @RequestParam(name = "show-airports", required = false,
+                    defaultValue = "false") boolean showAirports) {
+        try {
+            List<City> result = cityService.findCities(name, showAirports);
+            List<CityDTO> resultDto = result.stream()
+                    .map(city -> CityMapper.toCityDTO(city, showAirports))
+                    .toList();
+            return ResponseEntity.ok(resultDto);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(Map.of("error", ex.getMessage()));
+        }
     }
 
     // POST one city
     @PostMapping("/city")
     public ResponseEntity<?> addCity(@Valid @RequestBody City city) {
         try {
-            City created = cityService.addCity(city);
-            return ResponseEntity.status(HttpStatus.CREATED).body(created);
+            City createdCity = cityService.addCity(city);
+            CityDTO createdCityDto = CityMapper.toCityDTO(createdCity, false);
+            // 201
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdCityDto);
         } catch (IllegalArgumentException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
     }
 
-    // POST multiple cities, batch fails
+    // POST multiple cities, batch fails if any city is a duplicate
     @PostMapping("/cities")
     public ResponseEntity<?> addCities(@Valid @RequestBody List<City> cities) {
         try {
             List<City> createdCities = cityService.addCities(cities);
-            return ResponseEntity.ok(createdCities);
+            List<CityDTO> createdCitiesDto = createdCities.stream()
+                    .map(city -> CityMapper.toCityDTO(city, false))
+                    .toList();
+            // 201
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdCitiesDto);
         } catch (IllegalArgumentException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
     }
 
@@ -73,13 +92,12 @@ public class CityController {
     public ResponseEntity<?> updateCity(@PathVariable Long id, @Valid @RequestBody City city) {
         try {
             City updated = cityService.updateCity(id, city);
-            return ResponseEntity.ok(updated);
+            CityDTO updatedDto = CityMapper.toCityDTO(updated, false);
+            return ResponseEntity.ok(updatedDto);
         } catch (NoSuchElementException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
         } catch (IllegalArgumentException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
     }
 
@@ -87,12 +105,14 @@ public class CityController {
     public ResponseEntity<?> deleteCity(@PathVariable Long id) {
         try {
             cityService.deleteCityById(id);
-            return ResponseEntity.noContent().build(); // 204 No Content
+            return ResponseEntity.noContent().build();
         } catch (NoSuchElementException ex) {
-            Map<String, String> error = Map.of("error", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
         }
     }
+
 
 
 }

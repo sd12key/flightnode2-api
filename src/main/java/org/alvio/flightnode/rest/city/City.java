@@ -1,10 +1,17 @@
 package org.alvio.flightnode.rest.city;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.alvio.flightnode.rest.airport.Airport;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(
@@ -19,7 +26,7 @@ public class City {
 
     // set for MySQL only
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank(message = "City name is required.")
     @Pattern(regexp = "^[a-zA-Z .'-]+$", message = "Invalid city name.")
@@ -35,11 +42,15 @@ public class City {
     @Min(value = 1, message = "Population must be positive.")
     private int population;
 
-    public long getId() {
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private List<Airport> airports = new ArrayList<>();
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,7 +59,7 @@ public class City {
     }
 
     public void setName(String name) {
-        this.name = (name != null) ? name.trim() : null;
+        this.name = name.trim();
     }
 
     public String getState() {
@@ -56,7 +67,7 @@ public class City {
     }
 
     public void setState(String state) {
-        this.state = (state != null) ? state.trim().toUpperCase() : null;
+        this.state = state.trim().toUpperCase();
     }
 
     public int getPopulation() {
@@ -65,5 +76,9 @@ public class City {
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    public List<Airport> getAirports() {
+        return airports;
     }
 }
