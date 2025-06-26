@@ -89,4 +89,35 @@ public class Passenger {
         this.flights = (flights != null) ? flights : new ArrayList<>();
     }
 
+    public void addFlight(Flight flight) {
+        if (this.flights.stream().noneMatch(f -> f.getId().equals(flight.getId()))) {
+            this.flights.add(flight);
+        }
+        if (flight.getPassengers().stream().noneMatch(p -> p.getId().equals(this.getId()))) {
+            flight.getPassengers().add(this);
+        }
+    }
+
+    public void removeFlight(Flight flight) {
+        this.flights.removeIf(f -> f.getId().equals(flight.getId()));
+        flight.getPassengers().removeIf(p -> p.getId().equals(this.getId()));
+    }
+
+    public boolean hasFlight(Long flightId) {
+        return this.flights.stream().anyMatch(f -> f.getId().equals(flightId));
+    }
+
+    public boolean hasFlight(Flight flight) {
+        return hasFlight(flight.getId());
+    }
+
+    public boolean doesNotHaveFlight(Long flightId) {
+        return !hasFlight(flightId);
+    }
+
+    public boolean doesNotHaveFlight(Flight flight) {
+        return !hasFlight(flight.getId());
+    }
+
+
 }

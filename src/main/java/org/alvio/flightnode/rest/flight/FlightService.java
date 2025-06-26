@@ -49,12 +49,14 @@ public class FlightService {
         return flightRepository.searchByCitiesAndStartDate(from, departureCity, arrivalCity);
     }
 
-    // helper method to validate and create a full flight object
-    private void validateAndCreateFullFlight(Flight flight) {
+    private void validateNewFlight(Flight flight) {
         if (flight.getId() != null) {
             throw new IllegalArgumentException("ID must not be provided when creating a new flight.");
         }
+        validateAndSetAssociations(flight);
+    }
 
+    private void validateAndSetAssociations(Flight flight) {
         if (flight.getAircraft() == null || flight.getAircraft().getId() == null) {
             throw new ConflictException("Valid aircraft ID must be provided.");
         }
@@ -65,22 +67,18 @@ public class FlightService {
             throw new ConflictException("Valid arrival airport ID must be provided.");
         }
 
-        Aircraft aircraft = aircraftService.getAircraftById(flight.getAircraft().getId(), false);
-        Airport departureAirport = airportService.getAirportById(flight.getDepartureAirport().getId());
-        Airport arrivalAirport = airportService.getAirportById(flight.getArrivalAirport().getId());
-
-        flight.setAircraft(aircraft);
-        flight.setDepartureAirport(departureAirport);
-        flight.setArrivalAirport(arrivalAirport);
+        flight.setAircraft(aircraftService.getAircraftById(flight.getAircraft().getId(), false));
+        flight.setDepartureAirport(airportService.getAirportById(flight.getDepartureAirport().getId()));
+        flight.setArrivalAirport(airportService.getAirportById(flight.getArrivalAirport().getId()));
     }
 
     public Flight addFlight(Flight flight) {
-        validateAndCreateFullFlight(flight);
+        validateNewFlight(flight);
         return flightRepository.save(flight);
     }
 
     public List<Flight> addFlights(List<Flight> flights) {
-        for (Flight flight : flights) { validateAndCreateFullFlight(flight); }
+        for (Flight flight : flights) { validateNewFlight(flight); }
         return flightRepository.saveAll(flights);
     }
 
@@ -88,9 +86,23 @@ public class FlightService {
         if (updatedFlight.getId() != null && !updatedFlight.getId().equals(id)) {
             throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
         }
-        getFlightById(id);
-        validateAndCreateFullFlight(updatedFlight);
-        return flightRepository.save(updatedFlight);
+
+        Flight existing = getFlightById(id);
+
+        if (!existing.getPassengers().isEmpty()) {
+            throw new ConflictException("Cannot modify a flight that has existing bookings.");
+        }
+
+        validateAndSetAssociations(updatedFlight);
+
+        existing.setFlightNumber(updatedFlight.getFlightNumber());
+        existing.setDepartureTime(updatedFlight.getDepartureTime());
+        existing.setArrivalTime(updatedFlight.getArrivalTime());
+        existing.setAircraft(updatedFlight.getAircraft());
+        existing.setDepartureAirport(updatedFlight.getDepartureAirport());
+        existing.setArrivalAirport(updatedFlight.getArrivalAirport());
+
+        return flightRepository.save(existing);
     }
 
     public void deleteFlightById(Long id) {

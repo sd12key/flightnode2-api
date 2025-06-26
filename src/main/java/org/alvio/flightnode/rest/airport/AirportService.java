@@ -77,6 +77,15 @@ public class AirportService {
             if (existing.isPresent()) {
                 duplicates.add(airport.getName() + " (" + airport.getCode() + ")");
             }
+
+            Long cityId = airport.getCity() != null ? airport.getCity().getId() : null;
+            if (cityId == null) {
+                throw new IllegalArgumentException("City ID must be provided for airport: " + airport.getName());
+            }
+
+            City fullCity = cityService.getCityById(cityId);
+            airport.setCity(fullCity);
+
         }
 
         if (!duplicates.isEmpty()) throw new ConflictException(

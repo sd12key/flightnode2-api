@@ -1,10 +1,7 @@
 package org.alvio.flightnode.rest.passenger;
 
 import org.alvio.flightnode.exception.ConflictException;
-import org.alvio.flightnode.mapper.FlightMapper;
-import org.alvio.flightnode.mapper.PassengerMapper;
 import org.alvio.flightnode.rest.flight.Flight;
-import org.alvio.flightnode.rest.flight.FlightRepository;
 import org.alvio.flightnode.rest.flight.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -95,11 +92,11 @@ public class PassengerService {
         Passenger passenger = getPassengerById(passengerId, false, false, false);
         Flight flight = flightService.getFlightById(flightId);
 
-        if (passenger.getFlights().contains(flight)) {
+        if (passenger.hasFlight(flight)) {
             throw new ConflictException("Passenger is already booked on this flight.");
         }
 
-        passenger.getFlights().add(flight);
+        passenger.addFlight(flight);
         passengerRepository.save(passenger);
 
         return new PassengerFlightPair(passenger, flight);
@@ -109,9 +106,12 @@ public class PassengerService {
         Passenger passenger = getPassengerById(passengerId, true, false, false);
         Flight flight = flightService.getFlightById(flightId);
 
-        if (passenger.getFlights().remove(flight)) {
-            passengerRepository.save(passenger);
+        if (passenger.doesNotHaveFlight(flight)) {
+            throw new ConflictException("Passenger " + passengerId + " is not booked on flight " + flightId);
         }
+
+        passenger.removeFlight(flight);
+        passengerRepository.save(passenger);
 
         return new PassengerFlightPair(passenger, flight);
     }
