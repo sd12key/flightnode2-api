@@ -1,7 +1,11 @@
 package org.alvio.flightnode.dto;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FlightDTO {
     private Long id;
     private String flightNumber;
@@ -10,6 +14,7 @@ public class FlightDTO {
     private AircraftSummaryDTO aircraft;
     private AirportSummaryDTO departureAirport;
     private AirportSummaryDTO arrivalAirport;
+    private List<PassengerSummaryDTO> passengers;
 
     public FlightDTO(Long id, String flightNumber,
                      LocalDateTime departureTime, LocalDateTime arrivalTime,
@@ -33,4 +38,9 @@ public class FlightDTO {
     public AircraftSummaryDTO getAircraft() { return aircraft; }
     public AirportSummaryDTO getDepartureAirport() { return departureAirport; }
     public AirportSummaryDTO getArrivalAirport() { return arrivalAirport; }
+    public List<PassengerSummaryDTO> getPassengers() { return passengers; }
+    public void setPassengers(List<PassengerSummaryDTO> passengers) {
+        this.passengers = passengers;
+    }
+
 }
