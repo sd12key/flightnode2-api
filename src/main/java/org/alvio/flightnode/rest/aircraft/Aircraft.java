@@ -14,11 +14,11 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Aircraft model is required.")
-    @Pattern(regexp = "^[A-Za-z0-9 .'-]+$", message = "Invalid aircraft model.")
+    @NotBlank(message = "Aircraft type is required.")
+    @Pattern(regexp = "^[A-Za-z0-9 .'-]+$", message = "Invalid aircraft type.")
     @Size(max = 100, message = "Maximum 100 characters.")
     @Column(nullable = false, length = 100)
-    private String model;
+    private String type;
 
     @NotBlank(message = "Airline name is required.")
     @Pattern(
@@ -45,12 +45,12 @@ public class Aircraft {
         this.id = id;
     }
 
-    public String getModel() {
-        return model;
+    public String getType() {
+        return type;
     }
 
-    public void setModel(String model) {
-        this.model = model.trim();
+    public void setType(String type) {
+        this.type = type.trim();
     }
 
     public String getAirlineName() {

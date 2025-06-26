@@ -73,7 +73,7 @@ public class CityService {
     }
 
     public City updateCity(Long id, City updatedCity) {
-        City existingCity = getCityById(id);
+        City existingCity = getCityById(id, true);
 
         Optional<City> duplicateCity = cityRepository.findByNameAndState(updatedCity.getName(), updatedCity.getState());
 
@@ -89,7 +89,7 @@ public class CityService {
     }
 
     public void deleteCityById(Long id) {
-        City city = getCityById(id);
+        City city = getCityById(id, true);
 
         if (!city.getAirports().isEmpty()) {
             throw new IllegalStateException("City cannot be deleted: it is linked to existing airports.");
