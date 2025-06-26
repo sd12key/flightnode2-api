@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.aircraft.Aircraft;
 import org.alvio.flightnode.rest.airport.Airport;
+import org.alvio.flightnode.rest.passenger.Passenger;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Flight {
@@ -45,6 +48,9 @@ public class Flight {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
+
+    @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER)
+    private List<Passenger> passengers = new ArrayList<>();
 
     // validate arrival and departure time
     @AssertTrue(message = "Flight duration must be between 30 minutes and 24 hours.")
@@ -109,5 +115,7 @@ public class Flight {
     public void setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
+
+    public List<Passenger> getPassengers() { return passengers; }
 
 }

@@ -42,11 +42,12 @@ public class Passenger {
     private String phoneNumber;
 
     // Many-to-many : PASSENGERS <-> FLIGHTS
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "passenger_flight",
             joinColumns = @JoinColumn(name = "passenger_id"),
-            inverseJoinColumns = @JoinColumn(name = "flight_id")
+            inverseJoinColumns = @JoinColumn(name = "flight_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"passenger_id", "flight_id"})
     )
     private List<Flight> flights = new ArrayList<>();
 

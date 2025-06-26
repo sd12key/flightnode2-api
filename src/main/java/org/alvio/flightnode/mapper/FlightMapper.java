@@ -37,7 +37,21 @@ public class FlightMapper {
         );
     }
 
-    public static FlightSummaryDTO toFlightSummaryDTO(Flight flight) {
+    public static FlightDTO toFlightDTO(Flight flight, boolean showPassengers) {
+        FlightDTO dto = toFlightDTO(flight);
+
+        if (showPassengers && flight.getPassengers() != null) {
+            dto.setPassengers(
+                    flight.getPassengers().stream()
+                            .map(PassengerMapper::toSummary)
+                            .toList()
+            );
+        }
+
+        return dto;
+    }
+
+    public static FlightSummaryDTO toSummary(Flight flight) {
         return new FlightSummaryDTO(
                 flight.getId(),
                 flight.getFlightNumber(),

@@ -23,10 +23,14 @@ public class FlightController {
     private FlightService flightService;
 
     @GetMapping("/flight/{id}")
-    public ResponseEntity<?> getFlightById(@PathVariable Long id) {
+    public ResponseEntity<?> getFlightById(@PathVariable Long id,
+                                           @RequestParam(name = "show-passengers", required = false,
+                                                         defaultValue = "false") boolean showPassengers)
+    {
+
         try {
             Flight flight = flightService.getFlightById(id);
-            FlightDTO flightDto = FlightMapper.toFlightDTO(flight);
+            FlightDTO flightDto = FlightMapper.toFlightDTO(flight, showPassengers);
             return ResponseEntity.ok(flightDto);
         } catch (NoSuchElementException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
