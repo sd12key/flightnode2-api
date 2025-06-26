@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(
@@ -22,7 +23,8 @@ public class City {
 
     @NotBlank(message = "City name is required")
     @Pattern(regexp = "^[a-zA-Z .'-]+$", message = "Invalid city name")
-    @Column(nullable = false)
+    @Size(max = 50, message = "Maximum 50 characters")
+    @Column(nullable = false, length = 50)
     private String name;
 
     @NotBlank(message = "State is required")

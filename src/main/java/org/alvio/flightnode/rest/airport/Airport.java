@@ -12,7 +12,8 @@ public class Airport {
 
     @NotBlank(message = "Airport name is required")
     @Pattern(regexp = "^[a-zA-Z0-9 .'-]+$", message = "Invalid airport name")
-    @Column(nullable = false)
+    @Size(max = 50, message = "Maximum 50 characters")
+    @Column(nullable = false, length = 50)
     private String name;
 
     @NotBlank(message = "Airport code is required")
