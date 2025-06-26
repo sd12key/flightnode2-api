@@ -7,6 +7,10 @@ import org.alvio.flightnode.rest.city.City;
 @Entity
 public class Airport {
     @Id
+    // @SequenceGenerator(name = "airport_sequence", sequenceName = "airport_sequence", allocationSize = 1, initialValue = 1)
+    // @GeneratedValue(generator = "airport_sequence")
+
+    // set for MySQL only
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

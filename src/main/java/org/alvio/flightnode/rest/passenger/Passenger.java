@@ -7,6 +7,10 @@ import jakarta.validation.constraints.*;
 public class Passenger {
 
     @Id
+    // @SequenceGenerator(name = "passenger_sequence", sequenceName = "passenger_sequence", allocationSize = 1, initialValue = 1)
+    // @GeneratedValue(generator = "passenger_sequence")
+
+    // set for MySQL only
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

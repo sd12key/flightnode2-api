@@ -14,10 +14,10 @@ import jakarta.validation.constraints.Size;
 public class City {
 
     @Id
-    // @SequenceGenerator(name = "city_sequence", sequenceName = "city_sequence", allocationSize = 20, initialValue = 1)
+    // @SequenceGenerator(name = "city_sequence", sequenceName = "city_sequence", allocationSize = 1, initialValue = 1)
     // @GeneratedValue(generator = "city_sequence")
 
-    // MySQL -> Use IDENTITY
+    // set for MySQL only
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
