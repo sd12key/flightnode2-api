@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface PassengerRepository extends JpaRepository<Passenger, Long> {
 
-    @EntityGraph(attributePaths = {"flights", "flights.departureAirport", "flights.arrivalAirport", "flights.aircraft"})
+    @EntityGraph(attributePaths = {"flights.departureAirport", "flights.arrivalAirport", "flights.aircraft"})
     @Query("SELECT p FROM Passenger p")
     List<Passenger> findAllWithFlights();
 
-    @EntityGraph(attributePaths = {"flights", "flights.departureAirport", "flights.arrivalAirport", "flights.aircraft"})
+    @EntityGraph(attributePaths = {"flights.departureAirport", "flights.arrivalAirport", "flights.aircraft"})
     @Query("SELECT p FROM Passenger p WHERE p.id = :id")
     Passenger findWithFlightsById(Long id);
 

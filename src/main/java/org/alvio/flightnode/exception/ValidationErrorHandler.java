@@ -68,6 +68,7 @@ public class ValidationErrorHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<Map<String, String>> handleNotFound(NoSuchElementException ex) {
+//        System.out.println("Handled by custom ValidationErrorHandler: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("error", ex.getMessage()));
     }

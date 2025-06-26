@@ -108,27 +108,44 @@ public class PassengerController {
             return ResponseEntity.badRequest().body(Map.of("error", "Request must include at least one booking."));
         }
 
-        List<Map<String, Object>> resultList = new ArrayList<>();
+        List<Map<String, Object>> results = new ArrayList<>();
+        int successCount = 0;
+        int failureCount = 0;
 
         for (BookingRequestDTO dto : bookings) {
             try {
                 PassengerFlightPair result = passengerService.bookFlight(dto.getPassengerId(), dto.getFlightId());
 
-                resultList.add(Map.of(
+                results.add(Map.of(
                         "message", "Flight booked.",
                         "passenger", PassengerMapper.toSummary(result.passenger()),
                         "flight", FlightMapper.toSummary(result.flight())
                 ));
+                successCount++;
             } catch (Exception ex) {
-                resultList.add(Map.of(
+                results.add(Map.of(
                         "error", ex.getClass().getSimpleName() + ": " + ex.getMessage(),
                         "passengerId", dto.getPassengerId(),
                         "flightId", dto.getFlightId()
                 ));
+                failureCount++;
             }
         }
 
-        return ResponseEntity.ok(resultList);
+        Map<String, Object> response = Map.of(
+                "successCount", successCount,
+                "failureCount", failureCount,
+                "results", results
+        );
+
+        if (successCount == 0) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        } else if (failureCount > 0) {
+            return ResponseEntity.status(HttpStatus.MULTI_STATUS).body(response);
+        } else {
+            return ResponseEntity.ok(response);
+        }
+
     }
 
     @DeleteMapping("/book")
