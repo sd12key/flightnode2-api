@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.aircraft;
 
+import org.alvio.flightnode.exception.ConflictException;
 import org.alvio.flightnode.rest.city.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class AircraftService {
     public void deleteAircraftById(Long id) {
         Aircraft deletingAircraft = getAircraftById(id, false);
         if (!deletingAircraft.getFlights().isEmpty()) {
-            throw new IllegalArgumentException("Aircraft cannot be deleted: it is linked to existing flights.");
+            throw new ConflictException("Aircraft cannot be deleted: it is linked to existing flights.");
         }
         aircraftRepository.deleteById(id);
     }

@@ -25,16 +25,10 @@ public class FlightController {
     @GetMapping("/flight/{id}")
     public ResponseEntity<?> getFlightById(@PathVariable Long id,
                                            @RequestParam(name = "show-passengers", required = false,
-                                                         defaultValue = "false") boolean showPassengers)
-    {
-
-        try {
-            Flight flight = flightService.getFlightById(id);
-            FlightDTO flightDto = FlightMapper.toFlightDTO(flight, showPassengers);
-            return ResponseEntity.ok(flightDto);
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
+                                                         defaultValue = "false") boolean showPassengers) {
+        Flight flight = flightService.getFlightById(id);
+        FlightDTO flightDto = FlightMapper.toFlightDTO(flight, showPassengers);
+        return ResponseEntity.ok(flightDto);
     }
 
     @GetMapping("/flights")
@@ -50,65 +44,38 @@ public class FlightController {
     public ResponseEntity<?> searchFlights(
             @RequestParam(name = "starting-date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startingDate,
             @RequestParam(name = "departure-city") String departureCity,
-            @RequestParam(name = "arrival-city") String arrivalCity
-    ) {
-        try {
-            List<Flight> result = flightService.searchFlights(startingDate, departureCity, arrivalCity);
-            List<FlightDTO> dtoList = result.stream()
-                    .map(FlightMapper::toFlightDTO)
-                    .toList();
-            return ResponseEntity.ok(dtoList);
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.badRequest().body(Map.of("error", ex.getMessage()));
-        }
+            @RequestParam(name = "arrival-city") String arrivalCity ) {
+
+        List<Flight> result = flightService.searchFlights(startingDate, departureCity, arrivalCity);
+        List<FlightDTO> dtoList = result.stream()
+                .map(FlightMapper::toFlightDTO)
+                .toList();
+        return ResponseEntity.ok(dtoList);
     }
 
 
     @PostMapping("/flight")
     public ResponseEntity<?> addFlight(@Valid @RequestBody Flight flight) {
-        try {
-            Flight createdFlight = flightService.addFlight(flight);
-            return ResponseEntity.status(HttpStatus.CREATED).body(FlightMapper.toFlightDTO(createdFlight));
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        Flight createdFlight = flightService.addFlight(flight);
+        return ResponseEntity.status(HttpStatus.CREATED).body(FlightMapper.toFlightDTO(createdFlight));
     }
 
     @PostMapping("/flights")
     public ResponseEntity<?> addFlights(@Valid @RequestBody List<Flight> flights) {
-        try {
-            List<Flight> createdFlights = flightService.addFlights(flights);
-            List<FlightDTO> createdFlightsDto = createdFlights.stream().map(FlightMapper::toFlightDTO).toList();
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdFlightsDto);
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage() + " Aborted."));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage() + " Aborted."));
-        }
-
+        List<Flight> createdFlights = flightService.addFlights(flights);
+        List<FlightDTO> createdFlightsDto = createdFlights.stream().map(FlightMapper::toFlightDTO).toList();
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFlightsDto);
     }
 
     @PutMapping("/flight/{id}")
     public ResponseEntity<?> updateFlight(@PathVariable Long id, @Valid @RequestBody Flight flight) {
-        try {
-            Flight updated = flightService.updateFlight(id, flight);
-            return ResponseEntity.ok(FlightMapper.toFlightDTO(updated));
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        Flight updated = flightService.updateFlight(id, flight);
+        return ResponseEntity.ok(FlightMapper.toFlightDTO(updated));
     }
 
     @DeleteMapping("/flight/{id}")
     public ResponseEntity<?> deleteFlight(@PathVariable Long id) {
-        try {
-            flightService.deleteFlightById(id);
-            return ResponseEntity.noContent().build();
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
+        flightService.deleteFlightById(id);
+        return ResponseEntity.noContent().build();
     }
 }

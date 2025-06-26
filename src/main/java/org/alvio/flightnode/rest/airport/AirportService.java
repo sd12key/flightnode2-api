@@ -1,5 +1,6 @@
 package org.alvio.flightnode.rest.airport;
 
+import org.alvio.flightnode.exception.ConflictException;
 import org.alvio.flightnode.rest.city.City;
 import org.alvio.flightnode.rest.city.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class AirportService {
 
         Optional <Airport> existing = airportRepository.findByCode(airport.getCode());
         if (existing.isPresent()) {
-            throw new IllegalArgumentException("Airport '" + airport.getName() +
+            throw new ConflictException("Airport '" + airport.getName() +
                     "' (" + airport.getCode() + ") already exists.");
         }
 
@@ -78,7 +79,7 @@ public class AirportService {
             }
         }
 
-        if (!duplicates.isEmpty()) throw new IllegalArgumentException(
+        if (!duplicates.isEmpty()) throw new ConflictException(
                 duplicates.size() == 1 ?
                         "Airport " + duplicates.get(0) + " already exists, aborted." :
                         "Airports " + String.join(", ", duplicates) + " already exist, aborted."
@@ -97,7 +98,7 @@ public class AirportService {
 
         Optional<Airport> duplicateAirport = airportRepository.findByCode(updatedAirport.getCode());
         if (duplicateAirport.isPresent() && !duplicateAirport.get().getId().equals(id)) {
-            throw new IllegalArgumentException("Airport code '" + updatedAirport.getCode() + "' already exists.");
+            throw new ConflictException("Airport code '" + updatedAirport.getCode() + "' already exists.");
         }
 
         City newCity = cityService.getCityById(updatedAirport.getCity().getId());
@@ -113,7 +114,7 @@ public class AirportService {
         Airport airport = getAirportById(id);
 
         if (!airport.getDepartureFlights().isEmpty() || !airport.getArrivalFlights().isEmpty()) {
-            throw new IllegalArgumentException("Airport cannot be deleted: it is linked to existing flights.");
+            throw new ConflictException("Airport cannot be deleted: it is linked to existing flights.");
         }
 
         airportRepository.deleteById(id);

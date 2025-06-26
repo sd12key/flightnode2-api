@@ -1,5 +1,8 @@
 package org.alvio.flightnode.rest.passenger;
 
+import org.alvio.flightnode.exception.ConflictException;
+import org.alvio.flightnode.mapper.FlightMapper;
+import org.alvio.flightnode.mapper.PassengerMapper;
 import org.alvio.flightnode.rest.flight.Flight;
 import org.alvio.flightnode.rest.flight.FlightRepository;
 import org.alvio.flightnode.rest.flight.FlightService;
@@ -83,27 +86,33 @@ public class PassengerService {
     public void deletePassenger(Long id) {
         Passenger passenger = getPassengerById(id, false, false, false);
         if (!passenger.getFlights().isEmpty()) {
-            throw new IllegalArgumentException("Passenger cannot be deleted: has existing bookings.");
+            throw new ConflictException("Passenger cannot be deleted: has existing bookings.");
         }
         passengerRepository.deleteById(id);
     }
 
-    public void bookFlight(Long passengerId, Long flightId) {
+    public PassengerFlightPair bookFlight(Long passengerId, Long flightId) {
         Passenger passenger = getPassengerById(passengerId, false, false, false);
         Flight flight = flightService.getFlightById(flightId);
 
-        if (!passenger.getFlights().contains(flight)) {
-            passenger.getFlights().add(flight);
-            passengerRepository.save(passenger);
+        if (passenger.getFlights().contains(flight)) {
+            throw new ConflictException("Passenger is already booked on this flight.");
         }
+
+        passenger.getFlights().add(flight);
+        passengerRepository.save(passenger);
+
+        return new PassengerFlightPair(passenger, flight);
     }
 
-    public void removeBooking(Long passengerId, Long flightId) {
-        Passenger passenger = getPassengerById(passengerId, false, false, false);
+    public PassengerFlightPair removeBooking(Long passengerId, Long flightId) {
+        Passenger passenger = getPassengerById(passengerId, true, false, false);
         Flight flight = flightService.getFlightById(flightId);
 
         if (passenger.getFlights().remove(flight)) {
             passengerRepository.save(passenger);
         }
+
+        return new PassengerFlightPair(passenger, flight);
     }
 }

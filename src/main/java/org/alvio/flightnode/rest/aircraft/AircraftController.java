@@ -33,13 +33,9 @@ public class AircraftController {
     public ResponseEntity<?> getAircraftById(@PathVariable Long id,
                                              @RequestParam(name = "show-airports", required = false,
                                                            defaultValue = "false") boolean showAirports) {
-        try {
-            Aircraft aircraft = aircraftService.getAircraftById(id, showAirports);
-            AircraftDTO aircraftDto = AircraftMapper.toAircraftDTO(aircraft, showAirports);
-            return ResponseEntity.ok(aircraftDto);
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
+        Aircraft aircraft = aircraftService.getAircraftById(id, showAirports);
+        AircraftDTO aircraftDto = AircraftMapper.toAircraftDTO(aircraft, showAirports);
+        return ResponseEntity.ok(aircraftDto);
     }
 
     @PostMapping("/aircraft")
@@ -58,24 +54,15 @@ public class AircraftController {
 
     @PutMapping("/aircraft/{id}")
     public ResponseEntity<?> updateAircraft(@PathVariable Long id, @Valid @RequestBody Aircraft aircraft) {
-        try {
-            Aircraft updatedAircraft = aircraftService.updateAircraft(id, aircraft);
-            return ResponseEntity.ok(AircraftMapper.toAircraftDTO(updatedAircraft));
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        }
+
+        Aircraft updatedAircraft = aircraftService.updateAircraft(id, aircraft);
+        return ResponseEntity.ok(AircraftMapper.toAircraftDTO(updatedAircraft));
     }
 
     @DeleteMapping("/aircraft/{id}")
     public ResponseEntity<?> deleteAircraft(@PathVariable Long id) {
-        try {
-            aircraftService.deleteAircraftById(id);
-            return ResponseEntity.noContent().build();
-        } catch (NoSuchElementException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
-        } catch (IllegalArgumentException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", ex.getMessage()));
-        }
+        aircraftService.deleteAircraftById(id);
+        return ResponseEntity.noContent().build();
 
     }
 }
