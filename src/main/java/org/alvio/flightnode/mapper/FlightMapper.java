@@ -11,7 +11,8 @@ public class FlightMapper {
         AircraftSummaryDTO aircraftDto = new AircraftSummaryDTO(
                 flight.getAircraft().getId(),
                 flight.getAircraft().getType(),
-                flight.getAircraft().getAirlineName()
+                flight.getAircraft().getAirlineName(),
+                flight.getAircraft().getCapacity()
         );
 
         AirportSummaryDTO departureDto = new AirportSummaryDTO(

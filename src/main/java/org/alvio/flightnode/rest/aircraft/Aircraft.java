@@ -1,6 +1,5 @@
 package org.alvio.flightnode.rest.aircraft;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.flight.Flight;

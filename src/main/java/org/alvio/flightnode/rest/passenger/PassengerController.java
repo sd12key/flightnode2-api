@@ -5,10 +5,7 @@ import org.alvio.flightnode.dto.BookingRequestDTO;
 import org.alvio.flightnode.dto.PassengerDTO;
 import org.alvio.flightnode.mapper.FlightMapper;
 import org.alvio.flightnode.mapper.PassengerMapper;
-import org.alvio.flightnode.rest.flight.Flight;
-import org.alvio.flightnode.rest.flight.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +19,6 @@ public class PassengerController {
 
     @Autowired
     private PassengerService passengerService;
-
-    @Autowired
-    private FlightService flightService;
 
     @GetMapping("/passengers")
     public ResponseEntity<?> getAllPassengers(

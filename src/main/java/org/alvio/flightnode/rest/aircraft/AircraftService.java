@@ -1,7 +1,6 @@
 package org.alvio.flightnode.rest.aircraft;
 
 import org.alvio.flightnode.exception.ConflictException;
-import org.alvio.flightnode.rest.city.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,11 +29,6 @@ public class AircraftService {
         }
         return resultAircraft.get();
     }
-
-
-//    public Aircraft getAircraftById(Long id) {
-//        return getAircraftById(id, false);
-//    }
 
     public Aircraft addAircraft(Aircraft aircraft) {
         if (aircraft.getId() != null) {

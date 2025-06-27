@@ -112,8 +112,4 @@ public class CityService {
         cityRepository.deleteById(id);
     }
 
-
-
-
-
 }

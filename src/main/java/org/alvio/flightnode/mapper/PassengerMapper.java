@@ -35,6 +35,7 @@ public class PassengerMapper {
                     .filter(Objects::nonNull)
                     .map(AirportMapper::toSummary)
                     .filter(a -> seenAirportIds.add(a.getId()))
+                    .sorted(Comparator.comparing(AirportSummaryDTO::getId))
                     .toList();
             dto.setAirports(airports);
         }
@@ -46,6 +47,7 @@ public class PassengerMapper {
                     .filter(Objects::nonNull)
                     .map(AircraftMapper::toSummary)
                     .filter(a -> seenAircraftIds.add(a.getId()))
+                    .sorted(Comparator.comparing(AircraftSummaryDTO::getId))
                     .toList();
             dto.setAircrafts(aircrafts);
         }

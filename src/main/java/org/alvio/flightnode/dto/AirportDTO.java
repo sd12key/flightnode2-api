@@ -4,7 +4,7 @@ public class AirportDTO {
     private Long id;
     private String name;
     private String code;
-    private CitySummaryDTO city;  // small embedded city, not full object
+    private CitySummaryDTO city;
 
     public AirportDTO(Long id, String name, String code, CitySummaryDTO city) {
         this.id = id;

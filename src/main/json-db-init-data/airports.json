@@ -1,0 +1,97 @@
+[
+    {
+        "name": "John F. Kennedy International Airport",
+        "code": "JFK",
+        "city": { "id": 1 }
+    },
+    {
+        "name": "LaGuardia Airport",
+        "code": "LGA",
+        "city": { "id": 1 }
+    },
+    {
+        "name": "Newark Liberty International Airport",
+        "code": "EWR",
+        "city": { "id": 1 }
+    },
+    {
+        "name": "Los Angeles International Airport",
+        "code": "LAX",
+        "city": { "id": 2 }
+    },
+    {
+        "name": "Hollywood Burbank Airport",
+        "code": "BUR",
+        "city": { "id": 2 }
+    },
+    {
+        "name": "Long Beach Airport",
+        "code": "LGB",
+        "city": { "id": 2 }
+    },
+    {
+        "name": "O'Hare International Airport",
+        "code": "ORD",
+        "city": { "id": 3 }
+    },
+    {
+        "name": "Midway International Airport",
+        "code": "MDW",
+        "city": { "id": 3 }
+    },
+    {
+        "name": "Dallas/Fort Worth International Airport",
+        "code": "DFW",
+        "city": { "id": 4 }
+    },
+    {
+        "name": "Dallas Love Field",
+        "code": "DAL",
+        "city": { "id": 4 }
+    },
+    {
+        "name": "Denver International Airport",
+        "code": "DEN",
+        "city": { "id": 5 }
+    },
+    {
+        "name": "Seattle-Tacoma International Airport",
+        "code": "SEA",
+        "city": { "id": 6 }
+    },
+    {
+        "name": "King County International Airport (Boeing Field)",
+        "code": "BFI",
+        "city": { "id": 6 }
+    },
+    {
+        "name": "Miami International Airport",
+        "code": "MIA",
+        "city": { "id": 7 }
+    },
+    {
+        "name": "Fort Lauderdale-Hollywood International Airport",
+        "code": "FLL",
+        "city": { "id": 7 }
+    },
+    {
+        "name": "Phoenix Sky Harbor International Airport",
+        "code": "PHX",
+        "city": { "id": 8 }
+    },
+    {
+        "name": "Phoenix-Mesa Gateway Airport",
+        "code": "AZA",
+        "city": { "id": 8 }
+    },
+    {
+        "name": "Logan International Airport",
+        "code": "BOS",
+        "city": { "id": 9 }
+    },
+    {
+        "name": "Hartsfield-Jackson Atlanta International Airport",
+        "code": "ATL",
+        "city": { "id": 10 }
+    }
+]

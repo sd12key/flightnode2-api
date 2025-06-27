@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight, Long> {
-    // will have to work on that, wasn't able to achieve using standard JPA methods
     @Query("SELECT f FROM Flight f " +
             "WHERE f.departureTime >= :startDate " +
             "AND LOWER(f.departureAirport.city.name) LIKE LOWER(CONCAT('%', :departureCity, '%')) " +
