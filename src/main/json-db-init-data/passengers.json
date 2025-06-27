@@ -1,0 +1,77 @@
+[
+    {
+        "firstName": "Mary",
+        "lastName": "Flint",
+        "phoneNumber": "5173331256"
+    },
+    {
+        "firstName": "James",
+        "lastName": "Carter",
+        "phoneNumber": "2125550198"
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "Rodriguez",
+        "phoneNumber": "3104445678"
+    },
+    {
+        "firstName": "Ethan",
+        "lastName": "Kim",
+        "phoneNumber": "4047891234"
+    },
+    {
+        "firstName": "Olivia",
+        "lastName": "Patel",
+        "phoneNumber": "6175550123"
+    },
+    {
+        "firstName": "Liam",
+        "lastName": "Nguyen",
+        "phoneNumber": "7138883456"
+    },
+    {
+        "firstName": "Ava",
+        "lastName": "Martinez",
+        "phoneNumber": "3056667890"
+    },
+    {
+        "firstName": "Noah",
+        "lastName": "Wilson",
+        "phoneNumber": "3125556789"
+    },
+    {
+        "firstName": "Isabella",
+        "lastName": "Brown",
+        "phoneNumber": "4801234567"
+    },
+    {
+        "firstName": "Mason",
+        "lastName": "Garcia",
+        "phoneNumber": "7204449876"
+    },
+    {
+        "firstName": "Charlotte",
+        "lastName": "Lee",
+        "phoneNumber": "6785552345"
+    },
+    {
+        "firstName": "Benjamin",
+        "lastName": "Taylor",
+        "phoneNumber": "4257776543"
+    },
+    {
+        "firstName": "Amelia",
+        "lastName": "Clark",
+        "phoneNumber": "3478889012"
+    },
+    {
+        "firstName": "William",
+        "lastName": "Hernandez",
+        "phoneNumber": "6193335678"
+    },
+    {
+        "firstName": "Mia",
+        "lastName": "Wright",
+        "phoneNumber": "5034447890"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "type": "Boeing 737-800",
+        "airlineName": "United Airlines",
+        "capacity": 166
+    },
+    {
+        "type": "Boeing 757-200",
+        "airlineName": "United Airlines",
+        "capacity": 169
+    },
+    {
+        "type": "Boeing 787-9 Dreamliner",
+        "airlineName": "United Airlines",
+        "capacity": 257
+    },
+    {
+        "type": "Airbus A320",
+        "airlineName": "United Airlines",
+        "capacity": 150
+    },
+    {
+        "type": "Boeing 737-900ER",
+        "airlineName": "Delta Air Lines",
+        "capacity": 180
+    },
+    {
+        "type": "Airbus A321",
+        "airlineName": "Delta Air Lines",
+        "capacity": 192
+    },
+    {
+        "type": "Boeing 767-300ER",
+        "airlineName": "Delta Air Lines",
+        "capacity": 218
+    },
+    {
+        "type": "Airbus A350-900",
+        "airlineName": "Delta Air Lines",
+        "capacity": 306
+    },
+    {
+        "type": "Boeing 737-800",
+        "airlineName": "American Airlines",
+        "capacity": 160
+    },
+    {
+        "type": "Boeing 777-200",
+        "airlineName": "American Airlines",
+        "capacity": 273
+    },
+    {
+        "type": "Airbus A321neo",
+        "airlineName": "American Airlines",
+        "capacity": 196
+    },
+    {
+        "type": "Boeing 787-8 Dreamliner",
+        "airlineName": "American Airlines",
+        "capacity": 234
+    }
+]

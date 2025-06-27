@@ -1,11 +1,7 @@
 package org.alvio.flightnode.rest.flight;
 
 import org.alvio.flightnode.exception.ConflictException;
-import org.alvio.flightnode.rest.aircraft.Aircraft;
-import org.alvio.flightnode.rest.aircraft.AircraftRepository;
 import org.alvio.flightnode.rest.aircraft.AircraftService;
-import org.alvio.flightnode.rest.airport.Airport;
-import org.alvio.flightnode.rest.airport.AirportRepository;
 import org.alvio.flightnode.rest.airport.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

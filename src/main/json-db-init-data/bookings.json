@@ -1,0 +1,67 @@
+[
+    { "flightId": "1",  "passengerId": "1" },
+    { "flightId": "10", "passengerId": "1" },
+    { "flightId": "14", "passengerId": "1" },
+    { "flightId": "19", "passengerId": "1" },
+
+    { "flightId": "2",  "passengerId": "2" },
+    { "flightId": "12", "passengerId": "2" },
+    { "flightId": "20", "passengerId": "2" },
+
+    { "flightId": "3",  "passengerId": "3" },
+    { "flightId": "7",  "passengerId": "3" },
+    { "flightId": "13", "passengerId": "3" },
+    { "flightId": "17", "passengerId": "3" },
+
+    { "flightId": "5",  "passengerId": "4" },
+    { "flightId": "11", "passengerId": "4" },
+    { "flightId": "18", "passengerId": "4" },
+
+    { "flightId": "4",  "passengerId": "5" },
+    { "flightId": "8",  "passengerId": "5" },
+    { "flightId": "15", "passengerId": "5" },
+    { "flightId": "20", "passengerId": "5" },
+
+    { "flightId": "6",  "passengerId": "6" },
+    { "flightId": "9",  "passengerId": "6" },
+    { "flightId": "16", "passengerId": "6" },
+
+    { "flightId": "7",  "passengerId": "7" },
+    { "flightId": "11", "passengerId": "7" },
+    { "flightId": "17", "passengerId": "7" },
+    { "flightId": "19", "passengerId": "7" },
+
+    { "flightId": "3",  "passengerId": "8" },
+    { "flightId": "12", "passengerId": "8" },
+    { "flightId": "15", "passengerId": "8" },
+
+    { "flightId": "9",  "passengerId": "9" },
+    { "flightId": "13", "passengerId": "9" },
+    { "flightId": "19", "passengerId": "9" },
+
+    { "flightId": "5",  "passengerId": "10" },
+    { "flightId": "10", "passengerId": "10" },
+    { "flightId": "14", "passengerId": "10" },
+    { "flightId": "18", "passengerId": "10" },
+
+    { "flightId": "1",  "passengerId": "11" },
+    { "flightId": "8",  "passengerId": "11" },
+    { "flightId": "15", "passengerId": "11" },
+
+    { "flightId": "2",  "passengerId": "12" },
+    { "flightId": "6",  "passengerId": "12" },
+    { "flightId": "16", "passengerId": "12" },
+
+    { "flightId": "4",  "passengerId": "13" },
+    { "flightId": "10", "passengerId": "13" },
+    { "flightId": "14", "passengerId": "13" },
+    { "flightId": "20", "passengerId": "13" },
+
+    { "flightId": "7",  "passengerId": "14" },
+    { "flightId": "13", "passengerId": "14" },
+    { "flightId": "17", "passengerId": "14" },
+
+    { "flightId": "6",  "passengerId": "15" },
+    { "flightId": "11", "passengerId": "15" },
+    { "flightId": "18", "passengerId": "15" }
+]
