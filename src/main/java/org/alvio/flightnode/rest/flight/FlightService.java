@@ -3,6 +3,9 @@ package org.alvio.flightnode.rest.flight;
 import org.alvio.flightnode.exception.ConflictException;
 import org.alvio.flightnode.rest.aircraft.AircraftService;
 import org.alvio.flightnode.rest.airport.AirportService;
+import org.alvio.flightnode.rest.gate.Gate;
+import org.alvio.flightnode.rest.gate.GateRepository;
+import org.alvio.flightnode.rest.gate.GateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,9 @@ public class FlightService {
 
     @Autowired
     private AirportService airportService;
+
+    @Autowired
+    private GateService gateService;
 
     public List<Flight> getAllFlights() {
         return flightRepository.findAll();
@@ -53,6 +59,7 @@ public class FlightService {
     }
 
     private void validateAndSetAssociations(Flight flight) {
+        // Validate presence of required IDs
         if (flight.getAircraft() == null || flight.getAircraft().getId() == null) {
             throw new ConflictException("Valid aircraft ID must be provided.");
         }
@@ -62,10 +69,31 @@ public class FlightService {
         if (flight.getArrivalAirport() == null || flight.getArrivalAirport().getId() == null) {
             throw new ConflictException("Valid arrival airport ID must be provided.");
         }
+        if (flight.getDepartureGate() == null || flight.getDepartureGate().getId() == null) {
+            throw new ConflictException("Valid departure gate ID must be provided.");
+        }
+        if (flight.getArrivalGate() == null || flight.getArrivalGate().getId() == null) {
+            throw new ConflictException("Valid arrival gate ID must be provided.");
+        }
 
+        // Load and validate related objects
+        Gate depGate = gateService.getGateById(flight.getDepartureGate().getId());
+        Gate arrGate = gateService.getGateById(flight.getArrivalGate().getId());
+
+        if (!depGate.getAirport().getId().equals(flight.getDepartureAirport().getId())) {
+            throw new ConflictException("Departure gate does not belong to the selected departure airport.");
+        }
+
+        if (!arrGate.getAirport().getId().equals(flight.getArrivalAirport().getId())) {
+            throw new ConflictException("Arrival gate does not belong to the selected arrival airport.");
+        }
+
+        // Set resolved and validated entities
         flight.setAircraft(aircraftService.getAircraftById(flight.getAircraft().getId(), false));
         flight.setDepartureAirport(airportService.getAirportById(flight.getDepartureAirport().getId()));
         flight.setArrivalAirport(airportService.getAirportById(flight.getArrivalAirport().getId()));
+        flight.setDepartureGate(depGate);
+        flight.setArrivalGate(arrGate);
     }
 
     public Flight addFlight(Flight flight) {

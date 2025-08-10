@@ -3,6 +3,8 @@ package org.alvio.flightnode.rest.airport;
 import org.alvio.flightnode.exception.ConflictException;
 import org.alvio.flightnode.rest.city.City;
 import org.alvio.flightnode.rest.city.CityService;
+import org.alvio.flightnode.rest.gate.Gate;
+import org.alvio.flightnode.rest.gate.GateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class AirportService {
 
     @Autowired
     private AirportRepository airportRepository;
+
+    @Autowired
+    private GateRepository gateRepository;
 
     @Autowired
     private CityService cityService;
@@ -63,7 +68,15 @@ public class AirportService {
 
         City fullCity = cityService.getCityById(cityId);
         airport.setCity(fullCity);
-        return airportRepository.save(airport);
+
+        Airport savedAirport = airportRepository.save(airport);
+
+        Gate defaultGate = new Gate();
+        defaultGate.setName("TBD");
+        defaultGate.setAirport(savedAirport);
+        gateRepository.save(defaultGate);
+
+        return savedAirport;
     }
 
     public List<Airport> addAirports(List<Airport> airports) {
@@ -94,7 +107,16 @@ public class AirportService {
                         "Airports " + String.join(", ", duplicates) + " already exist, aborted."
         );
 
-        return airportRepository.saveAll(airports);
+        List<Airport> savedAirports = airportRepository.saveAll(airports);
+
+        for (Airport airport : savedAirports) {
+            Gate defaultGate = new Gate();
+            defaultGate.setName("TBD");
+            defaultGate.setAirport(airport);
+            gateRepository.save(defaultGate);
+        }
+
+        return savedAirports;
     }
 
     public Airport updateAirport(Long id, Airport updatedAirport) {

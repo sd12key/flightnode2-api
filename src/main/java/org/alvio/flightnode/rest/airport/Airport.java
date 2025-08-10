@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.city.City;
 import org.alvio.flightnode.rest.flight.Flight;
+import org.alvio.flightnode.rest.gate.Gate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,9 @@ public class Airport {
 
     @OneToMany(mappedBy = "arrivalAirport", fetch = FetchType.EAGER)
     private List<Flight> arrivalFlights = new ArrayList<>();
+
+    @OneToMany(mappedBy = "airport", fetch = FetchType.EAGER)
+    private List<Gate> gates = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -79,5 +83,8 @@ public class Airport {
     public List<Flight> getArrivalFlights() {
         return arrivalFlights;
     }
+
+    public List<Gate> getGates() { return gates; }
+
 
 }

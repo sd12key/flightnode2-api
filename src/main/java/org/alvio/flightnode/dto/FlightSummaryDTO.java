@@ -21,6 +21,7 @@ public class FlightSummaryDTO {
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.departureAirportCode = departureAirportCode;
+
         this.arrivalAirportCode = arrivalAirportCode;
         this.aircraftType = aircraftType;
         this.airlineName = airlineName;

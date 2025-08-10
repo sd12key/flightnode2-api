@@ -28,9 +28,12 @@ public class AirportController {
     }
 
     @GetMapping("/airport/{id}")
-    public ResponseEntity<?> getAirportById(@PathVariable Long id) {
+    public ResponseEntity<?> getAirportById(
+            @PathVariable Long id,
+            @RequestParam(name = "show-gates", required = false, defaultValue = "false") boolean showGates
+    ) {
         Airport airport = airportService.getAirportById(id);
-        AirportDTO airportDto = AirportMapper.toAirportDTO(airport);
+        AirportDTO airportDto = AirportMapper.toAirportDTO(airport, showGates);
         return ResponseEntity.ok(airportDto);
     }
 
