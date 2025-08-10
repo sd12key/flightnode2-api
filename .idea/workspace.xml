@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ba6ccc3-5ca2-44e4-b563-8719ed22bde3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/GateDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/GateSummaryDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/GateMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/Gate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightSummaryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightSummaryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/admin/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/Airport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/city/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/city/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" afterDir="false" />
-    </list>
+    <list default="true" id="1ba6ccc3-5ca2-44e4-b563-8719ed22bde3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.RestServiceApplication.executor": "Run",
-    "git-widget-placeholder": "add-gate-entity",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/ket/Documents/Keyin-EK/SD_12/SDAT/IntelliJ/flightnode2-api",
     "node.js.detected.package.eslint": "true",
@@ -126,6 +104,15 @@
       <workItem from="1754754658159" duration="580000" />
       <workItem from="1754755322555" duration="25000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Gate Entity+DTO+Repo+Controller+Service+">
+      <option name="closed" value="true" />
+      <created>1754794884286</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754794884286</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
