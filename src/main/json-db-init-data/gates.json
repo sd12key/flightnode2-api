@@ -1,0 +1,80 @@
+[
+  {"name": "T1-1", "airport": {"id": 1}}, {"name": "T1-2", "airport": {"id": 1}},
+  {"name": "T4-A1", "airport": {"id": 1}}, {"name": "T4-A2", "airport": {"id": 1}},
+  {"name": "T8-B1", "airport": {"id": 1}}, {"name": "T8-B2", "airport": {"id": 1}},
+
+  {"name": "A1", "airport": {"id": 2}}, {"name": "A2", "airport": {"id": 2}},
+  {"name": "B1", "airport": {"id": 2}}, {"name": "B2", "airport": {"id": 2}},
+  {"name": "C1", "airport": {"id": 2}},
+
+  {"name": "A-1", "airport": {"id": 3}}, {"name": "A-2", "airport": {"id": 3}},
+  {"name": "B-1", "airport": {"id": 3}}, {"name": "B-2", "airport": {"id": 3}},
+  {"name": "C-1", "airport": {"id": 3}},
+
+  {"name": "T1-1", "airport": {"id": 4}}, {"name": "T1-2", "airport": {"id": 4}},
+  {"name": "TB-1", "airport": {"id": 4}}, {"name": "TB-2", "airport": {"id": 4}},
+  {"name": "T3-1", "airport": {"id": 4}}, {"name": "T3-2", "airport": {"id": 4}},
+
+  {"name": "1", "airport": {"id": 5}}, {"name": "2", "airport": {"id": 5}},
+  {"name": "3", "airport": {"id": 5}}, {"name": "4", "airport": {"id": 5}},
+  {"name": "5", "airport": {"id": 5}},
+
+  {"name": "A1", "airport": {"id": 6}}, {"name": "A2", "airport": {"id": 6}},
+  {"name": "B1", "airport": {"id": 6}}, {"name": "B2", "airport": {"id": 6}},
+
+  {"name": "B1", "airport": {"id": 7}}, {"name": "B2", "airport": {"id": 7}},
+  {"name": "C1", "airport": {"id": 7}}, {"name": "C2", "airport": {"id": 7}},
+  {"name": "K1", "airport": {"id": 7}}, {"name": "K2", "airport": {"id": 7}},
+  {"name": "L1", "airport": {"id": 7}},
+
+  {"name": "A1", "airport": {"id": 8}}, {"name": "A2", "airport": {"id": 8}},
+  {"name": "B1", "airport": {"id": 8}}, {"name": "B2", "airport": {"id": 8}},
+  {"name": "C1", "airport": {"id": 8}},
+
+  {"name": "A1", "airport": {"id": 9}}, {"name": "A2", "airport": {"id": 9}},
+  {"name": "B1", "airport": {"id": 9}}, {"name": "B2", "airport": {"id": 9}},
+  {"name": "D1", "airport": {"id": 9}}, {"name": "D2", "airport": {"id": 9}},
+  {"name": "E1", "airport": {"id": 9}},
+
+  {"name": "1", "airport": {"id": 10}}, {"name": "2", "airport": {"id": 10}},
+  {"name": "3", "airport": {"id": 10}}, {"name": "4", "airport": {"id": 10}},
+
+  {"name": "A1", "airport": {"id": 11}}, {"name": "A2", "airport": {"id": 11}},
+  {"name": "B1", "airport": {"id": 11}}, {"name": "B2", "airport": {"id": 11}},
+  {"name": "C1", "airport": {"id": 11}}, {"name": "C2", "airport": {"id": 11}},
+
+  {"name": "A1", "airport": {"id": 12}}, {"name": "A2", "airport": {"id": 12}},
+  {"name": "B1", "airport": {"id": 12}}, {"name": "B2", "airport": {"id": 12}},
+  {"name": "C1", "airport": {"id": 12}}, {"name": "C2", "airport": {"id": 12}},
+  {"name": "D1", "airport": {"id": 12}},
+
+  {"name": "1", "airport": {"id": 13}}, {"name": "2", "airport": {"id": 13}},
+  {"name": "3", "airport": {"id": 13}}, {"name": "4", "airport": {"id": 13}},
+
+  {"name": "D1", "airport": {"id": 14}}, {"name": "D2", "airport": {"id": 14}},
+  {"name": "E1", "airport": {"id": 14}}, {"name": "E2", "airport": {"id": 14}},
+  {"name": "F1", "airport": {"id": 14}}, {"name": "F2", "airport": {"id": 14}},
+  {"name": "G1", "airport": {"id": 14}},
+
+  {"name": "1", "airport": {"id": 15}}, {"name": "2", "airport": {"id": 15}},
+  {"name": "3", "airport": {"id": 15}}, {"name": "4", "airport": {"id": 15}},
+  {"name": "5", "airport": {"id": 15}},
+
+  {"name": "T3-1", "airport": {"id": 16}}, {"name": "T3-2", "airport": {"id": 16}},
+  {"name": "T4-A1", "airport": {"id": 16}}, {"name": "T4-A2", "airport": {"id": 16}},
+  {"name": "T4-B1", "airport": {"id": 16}}, {"name": "T4-B2", "airport": {"id": 16}},
+
+  {"name": "1", "airport": {"id": 17}}, {"name": "2", "airport": {"id": 17}},
+  {"name": "3", "airport": {"id": 17}}, {"name": "4", "airport": {"id": 17}},
+
+  {"name": "A1", "airport": {"id": 18}}, {"name": "A2", "airport": {"id": 18}},
+  {"name": "B1", "airport": {"id": 18}}, {"name": "B2", "airport": {"id": 18}},
+  {"name": "C1", "airport": {"id": 18}}, {"name": "C2", "airport": {"id": 18}},
+  {"name": "E1", "airport": {"id": 18}},
+
+  {"name": "A1", "airport": {"id": 19}}, {"name": "A2", "airport": {"id": 19}},
+  {"name": "B1", "airport": {"id": 19}}, {"name": "B2", "airport": {"id": 19}},
+  {"name": "C1", "airport": {"id": 19}}, {"name": "C2", "airport": {"id": 19}},
+  {"name": "D1", "airport": {"id": 19}}, {"name": "D2", "airport": {"id": 19}},
+  {"name": "T1", "airport": {"id": 19}} 
+]

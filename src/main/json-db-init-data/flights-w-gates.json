@@ -1,0 +1,202 @@
+[
+    {
+        "flightNumber": "AA101",
+        "departureTime": "2024-01-15T06:15:00",
+        "arrivalTime": "2024-01-15T09:30:00",
+        "aircraft": { "id": 9 },
+        "departureAirport": { "id": 1 },
+        "departureGate": { "id": 20 },
+        "arrivalAirport": { "id": 12 },
+        "arrivalGate": { "id": 80 }
+    },
+    {
+        "flightNumber": "DL202",
+        "departureTime": "2024-01-22T11:00:00",
+        "arrivalTime": "2024-01-22T14:20:00",
+        "aircraft": { "id": 11 },
+        "departureAirport": { "id": 4 },
+        "departureGate": { "id": 36 },
+        "arrivalAirport": { "id": 19 },
+        "arrivalGate": { "id": 120 }
+    },
+    {
+        "flightNumber": "UA303",
+        "departureTime": "2024-02-05T08:45:00",
+        "arrivalTime": "2024-02-05T12:10:00",
+        "aircraft": { "id": 2 },
+        "departureAirport": { "id": 7 },
+        "departureGate": { "id": 51 },
+        "arrivalAirport": { "id": 4 },
+        "arrivalGate": { "id": 37 }
+    },
+    {
+        "flightNumber": "AA404",
+        "departureTime": "2024-02-18T16:30:00",
+        "arrivalTime": "2024-02-18T19:45:00",
+        "aircraft": { "id": 10 },
+        "departureAirport": { "id": 1 },
+        "departureGate": { "id": 21 },
+        "arrivalAirport": { "id": 10 },
+        "arrivalGate": { "id": 70 }
+    },
+    {
+        "flightNumber": "DL505",
+        "departureTime": "2024-03-03T07:20:00",
+        "arrivalTime": "2024-03-03T10:50:00",
+        "aircraft": { "id": 6 },
+        "departureAirport": { "id": 19 },
+        "departureGate": { "id": 121 },
+        "arrivalAirport": { "id": 11 },
+        "arrivalGate": { "id": 74 }
+    },
+    {
+        "flightNumber": "UA606",
+        "departureTime": "2024-03-12T13:10:00",
+        "arrivalTime": "2024-03-12T16:35:00",
+        "aircraft": { "id": 7 },
+        "departureAirport": { "id": 4 },
+        "departureGate": { "id": 38 },
+        "arrivalAirport": { "id": 18 },
+        "arrivalGate": { "id": 113 }
+    },
+    {
+        "flightNumber": "AA707",
+        "departureTime": "2024-04-08T09:00:00",
+        "arrivalTime": "2024-04-08T12:15:00",
+        "aircraft": { "id": 11 },
+        "departureAirport": { "id": 10 },
+        "departureGate": { "id": 71 },
+        "arrivalAirport": { "id": 14 },
+        "arrivalGate": { "id": 91 }
+    },
+    {
+        "flightNumber": "DL808",
+        "departureTime": "2024-04-25T18:45:00",
+        "arrivalTime": "2024-04-25T21:30:00",
+        "aircraft": { "id": 7 },
+        "departureAirport": { "id": 12 },
+        "departureGate": { "id": 81 },
+        "arrivalAirport": { "id": 7 },
+        "arrivalGate": { "id": 52 }
+    },
+    {
+        "flightNumber": "UA909",
+        "departureTime": "2024-05-14T10:30:00",
+        "arrivalTime": "2024-05-14T13:40:00",
+        "aircraft": { "id": 4 },
+        "departureAirport": { "id": 11 },
+        "departureGate": { "id": 75 },
+        "arrivalAirport": { "id": 16 },
+        "arrivalGate": { "id": 103 }
+    },
+    {
+        "flightNumber": "AA1010",
+        "departureTime": "2024-05-29T14:15:00",
+        "arrivalTime": "2024-05-29T17:25:00",
+        "aircraft": { "id": 12 },
+        "departureAirport": { "id": 18 },
+        "departureGate": { "id": 114 },
+        "arrivalAirport": { "id": 1 },
+        "arrivalGate": { "id": 22 }
+    },
+    {
+        "flightNumber": "DL1111",
+        "departureTime": "2024-06-07T06:50:00",
+        "arrivalTime": "2024-06-07T10:10:00",
+        "aircraft": { "id": 8 },
+        "departureAirport": { "id": 14 },
+        "departureGate": { "id": 92 },
+        "arrivalAirport": { "id": 19 },
+        "arrivalGate": { "id": 122 }
+    },
+    {
+        "flightNumber": "UA1212",
+        "departureTime": "2024-06-20T20:00:00",
+        "arrivalTime": "2024-06-20T23:30:00",
+        "aircraft": { "id": 1 },
+        "departureAirport": { "id": 7 },
+        "departureGate": { "id": 53 },
+        "arrivalAirport": { "id": 4 },
+        "arrivalGate": { "id": 39 }
+    },
+    {
+        "flightNumber": "AA1313",
+        "departureTime": "2024-07-04T12:30:00",
+        "arrivalTime": "2024-07-04T15:45:00",
+        "aircraft": { "id": 9 },
+        "departureAirport": { "id": 16 },
+        "departureGate": { "id": 104 },
+        "arrivalAirport": { "id": 10 },
+        "arrivalGate": { "id": 72 }
+    },
+    {
+        "flightNumber": "DL1414",
+        "departureTime": "2024-07-19T08:00:00",
+        "arrivalTime": "2024-07-19T11:20:00",
+        "aircraft": { "id": 11 },
+        "departureAirport": { "id": 19 },
+        "departureGate": { "id": 123 },
+        "arrivalAirport": { "id": 1 },
+        "arrivalGate": { "id": 23 }
+    },
+    {
+        "flightNumber": "UA1515",
+        "departureTime": "2024-08-09T17:45:00",
+        "arrivalTime": "2024-08-09T21:05:00",
+        "aircraft": { "id": 2 },
+        "departureAirport": { "id": 12 },
+        "departureGate": { "id": 82 },
+        "arrivalAirport": { "id": 7 },
+        "arrivalGate": { "id": 54 }
+    },
+    {
+        "flightNumber": "AA1616",
+        "departureTime": "2024-08-23T09:30:00",
+        "arrivalTime": "2024-08-23T12:40:00",
+        "aircraft": { "id": 10 },
+        "departureAirport": { "id": 4 },
+        "departureGate": { "id": 40 },
+        "arrivalAirport": { "id": 11 },
+        "arrivalGate": { "id": 76 }
+    },
+    {
+        "flightNumber": "DL1717",
+        "departureTime": "2024-09-11T13:20:00",
+        "arrivalTime": "2024-09-11T16:35:00",
+        "aircraft": { "id": 6 },
+        "departureAirport": { "id": 10 },
+        "departureGate": { "id": 73 },
+        "arrivalAirport": { "id": 14 },
+        "arrivalGate": { "id": 93 }
+    },
+    {
+        "flightNumber": "UA1818",
+        "departureTime": "2024-09-28T19:10:00",
+        "arrivalTime": "2024-09-28T22:25:00",
+        "aircraft": { "id": 7 },
+        "departureAirport": { "id": 18 },
+        "departureGate": { "id": 115 },
+        "arrivalAirport": { "id": 19 },
+        "arrivalGate": { "id": 124 }
+    },
+    {
+        "flightNumber": "AA1919",
+        "departureTime": "2024-10-05T07:00:00",
+        "arrivalTime": "2024-10-05T10:15:00",
+        "aircraft": { "id": 11 },
+        "departureAirport": { "id": 1 },
+        "departureGate": { "id": 24 },
+        "arrivalAirport": { "id": 16 },
+        "arrivalGate": { "id": 105 }
+    },
+    {
+        "flightNumber": "DL2020",
+        "departureTime": "2024-10-30T15:50:00",
+        "arrivalTime": "2024-10-30T19:10:00",
+        "aircraft": { "id": 7 },
+        "departureAirport": { "id": 11 },
+        "departureGate": { "id": 77 },
+        "arrivalAirport": { "id": 4 },
+        "arrivalGate": { "id": 41 }
+    }
+]
