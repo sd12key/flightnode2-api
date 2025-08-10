@@ -5,20 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ba6ccc3-5ca2-44e4-b563-8719ed22bde3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flightnode API Doc.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/GateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/GateSummaryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/GateMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/Gate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/gate/GateService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightSummaryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/FlightSummaryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/Airport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/city/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/city/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/Flight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -27,6 +53,13 @@
     &quot;assignee&quot;: &quot;sd12key&quot;
   }
 }</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/sd12key/flightnode2-api.git&quot;,
@@ -41,24 +74,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.flightnode2-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.flightnode2-api [install].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/ket/Documents/Keyin-EK/SD_12/SDAT/IntelliJ/flightnode2-api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.flightnode2-api [clean].executor": "Run",
+    "Maven.flightnode2-api [compile].executor": "Run",
+    "Maven.flightnode2-api [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.RestServiceApplication.executor": "Run",
+    "git-widget-placeholder": "add-gate-entity",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/ket/Documents/Keyin-EK/SD_12/SDAT/IntelliJ/flightnode2-api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="RestServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -91,5 +130,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test trunk-based approach" />
+    <option name="LAST_COMMIT_MESSAGE" value="test trunk-based approach" />
   </component>
 </project>

@@ -15,6 +15,7 @@ import java.util.List;
         name = "city",
         uniqueConstraints = @UniqueConstraint(columnNames = {"name", "state"})
 )
+
 public class City {
 
     @Id

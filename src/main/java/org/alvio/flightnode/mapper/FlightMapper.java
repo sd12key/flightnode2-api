@@ -1,9 +1,6 @@
 package org.alvio.flightnode.mapper;
 
-import org.alvio.flightnode.dto.AircraftSummaryDTO;
-import org.alvio.flightnode.dto.AirportSummaryDTO;
-import org.alvio.flightnode.dto.FlightDTO;
-import org.alvio.flightnode.dto.FlightSummaryDTO;
+import org.alvio.flightnode.dto.*;
 import org.alvio.flightnode.rest.flight.Flight;
 
 public class FlightMapper {
@@ -21,10 +18,18 @@ public class FlightMapper {
                 flight.getDepartureAirport().getCode()
         );
 
+        GateSummaryDTO departureGateDto = new GateSummaryDTO (flight.getDepartureGate().getId(),
+                                                              flight.getDepartureGate().getName()
+        );
+
         AirportSummaryDTO arrivalDto = new AirportSummaryDTO(
                 flight.getArrivalAirport().getId(),
                 flight.getArrivalAirport().getName(),
                 flight.getArrivalAirport().getCode()
+        );
+
+        GateSummaryDTO arrivalGateDto = new GateSummaryDTO (flight.getArrivalGate().getId(),
+                flight.getArrivalGate().getName()
         );
 
         return new FlightDTO(
@@ -34,7 +39,9 @@ public class FlightMapper {
                 flight.getArrivalTime(),
                 aircraftDto,
                 departureDto,
-                arrivalDto
+                departureGateDto,
+                arrivalDto,
+                arrivalGateDto
         );
     }
 

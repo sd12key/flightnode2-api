@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.alvio.flightnode.rest.aircraft.Aircraft;
 import org.alvio.flightnode.rest.airport.Airport;
+import org.alvio.flightnode.rest.gate.Gate;
 import org.alvio.flightnode.rest.passenger.Passenger;
 
 import java.time.Duration;
@@ -44,6 +45,14 @@ public class Flight {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "arrival_airport_id", nullable = false)
     private Airport arrivalAirport;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "departure_gate_id", nullable = false)
+    private Gate departureGate;
+
+    @ManyToOne(optional = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "arrival_gate_id", nullable = false)
+    private Gate arrivalGate;
 
     @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER)
     private List<Passenger> passengers = new ArrayList<>();
@@ -111,6 +120,14 @@ public class Flight {
     public void setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
+
+    public Gate getDepartureGate() { return departureGate; }
+
+    public void setDepartureGate(Gate departureGate) { this.departureGate = departureGate; }
+
+    public Gate getArrivalGate() { return arrivalGate; }
+
+    public void setArrivalGate(Gate arrivalGate) { this.arrivalGate = arrivalGate; }
 
     public List<Passenger> getPassengers() { return passengers; }
 
