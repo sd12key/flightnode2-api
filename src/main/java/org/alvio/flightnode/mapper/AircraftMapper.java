@@ -1,8 +1,6 @@
 package org.alvio.flightnode.mapper;
 
-import org.alvio.flightnode.dto.AircraftDTO;
-import org.alvio.flightnode.dto.AircraftSummaryDTO;
-import org.alvio.flightnode.dto.AirportSummaryDTO;
+import org.alvio.flightnode.dto.*;
 import org.alvio.flightnode.rest.aircraft.Aircraft;
 import org.alvio.flightnode.rest.flight.Flight;
 
@@ -11,10 +9,12 @@ import java.util.*;
 public class AircraftMapper {
 
     public static AircraftDTO toAircraftDTO(Aircraft aircraft, boolean showAirports) {
+        AirlineSummaryDTO airlineDto = AirlineMapper.toSummary(aircraft.getAirline());
+
         AircraftDTO dto = new AircraftDTO(
                 aircraft.getId(),
                 aircraft.getType(),
-                aircraft.getAirlineName(),
+                airlineDto,
                 aircraft.getCapacity()
         );
 
@@ -45,7 +45,6 @@ public class AircraftMapper {
         return dto;
     }
 
-
     public static AircraftDTO toAircraftDTO(Aircraft aircraft) {
         return toAircraftDTO(aircraft, false);
     }
@@ -54,9 +53,8 @@ public class AircraftMapper {
         return new AircraftSummaryDTO(
                 aircraft.getId(),
                 aircraft.getType(),
-                aircraft.getAirlineName(),
+                aircraft.getAirline().getName(),
                 aircraft.getCapacity()
         );
     }
-
 }

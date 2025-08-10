@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ba6ccc3-5ca2-44e4-b563-8719ed22bde3" name="Changes" comment="" />
+    <list default="true" id="1ba6ccc3-5ca2-44e4-b563-8719ed22bde3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirlineDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirlineSummaryDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirlineMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airline/AirlineController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airline/AirlineRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airline/AirlineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AircraftDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AircraftDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportSummaryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportSummaryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AircraftMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AircraftMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/aircraft/Aircraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/aircraft/Aircraft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/aircraft/AircraftService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/aircraft/AircraftService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -44,6 +63,9 @@
     &quot;accountId&quot;: &quot;c32eef52-9219-4a0b-9f79-77dad06be17c&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -65,7 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.RestServiceApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "adding-airline-entity",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/ket/Documents/Keyin-EK/SD_12/SDAT/IntelliJ/flightnode2-api",
     "node.js.detected.package.eslint": "true",
@@ -120,6 +142,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test trunk-based approach" />
-    <option name="LAST_COMMIT_MESSAGE" value="test trunk-based approach" />
+    <MESSAGE value="Added sample json data: gates.json and flights-w-gates.json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sample json data: gates.json and flights-w-gates.json" />
   </component>
 </project>

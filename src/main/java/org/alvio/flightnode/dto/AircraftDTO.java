@@ -8,15 +8,15 @@ import java.util.List;
 public class AircraftDTO {
     private Long id;
     private String type;
-    private String airlineName;
+    private AirlineSummaryDTO airline;
     private int capacity;
     private List<AirportSummaryDTO> departureAirports;
     private List<AirportSummaryDTO> arrivalAirports;
 
-    public AircraftDTO(Long id, String model, String airlineName, int capacity) {
+    public AircraftDTO(Long id, String model, AirlineSummaryDTO airline, int capacity) {
         this.id = id;
         this.type = model;
-        this.airlineName = airlineName;
+        this.airline = airline;
         this.capacity = capacity;
 
     }
@@ -29,8 +29,8 @@ public class AircraftDTO {
         return type;
     }
 
-    public String getAirlineName() {
-        return airlineName;
+    public AirlineSummaryDTO getAirline() {
+        return airline;
     }
 
     public int getCapacity() {
