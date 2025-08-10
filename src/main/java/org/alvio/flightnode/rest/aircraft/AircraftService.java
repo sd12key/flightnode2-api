@@ -1,6 +1,7 @@
 package org.alvio.flightnode.rest.aircraft;
 
 import org.alvio.flightnode.exception.ConflictException;
+import org.alvio.flightnode.rest.airline.AirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class AircraftService {
 
     @Autowired
     private AircraftRepository aircraftRepository;
+
+    @Autowired
+    private AirlineService airlineService;
 
     public List<Aircraft> getAllAircrafts(boolean showAirports) {
         return showAirports ?
@@ -35,6 +39,11 @@ public class AircraftService {
             throw new IllegalArgumentException("ID must not be provided when creating a new record. Aborted.");
         }
 
+        if (aircraft.getAirline() == null || aircraft.getAirline().getId() == null) {
+            throw new ConflictException("Valid airline ID must be provided.");
+        }
+        aircraft.setAirline(airlineService.getAirlineById(aircraft.getAirline().getId()));
+
         return aircraftRepository.save(aircraft);
     }
 
@@ -55,11 +64,17 @@ public class AircraftService {
             throw new IllegalArgumentException("Payload ID must match path variable or be omitted.");
         }
 
+        if (updatedAircraft.getAirline() == null || updatedAircraft.getAirline().getId() == null) {
+            throw new ConflictException("Valid airline ID must be provided.");
+        }
+
         Aircraft existingAircraft = getAircraftById(id, false);
 
         existingAircraft.setType(updatedAircraft.getType());
-        existingAircraft.setAirlineName(updatedAircraft.getAirlineName());
         existingAircraft.setCapacity(updatedAircraft.getCapacity());
+        existingAircraft.setAirline(
+                airlineService.getAirlineById(updatedAircraft.getAirline().getId())
+        );
 
         return aircraftRepository.save(existingAircraft);
     }

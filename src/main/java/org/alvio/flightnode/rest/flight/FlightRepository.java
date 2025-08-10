@@ -24,4 +24,27 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
             @Param("arrivalCity") String arrivalCity
     );
 
+    @Query("SELECT f FROM Flight f WHERE " +
+            "(:startDate IS NULL OR f.departureTime >= :startDate) AND " +
+            "(:endDate IS NULL OR f.departureTime <= :endDate) AND " +
+            "(:departureCity IS NULL OR LOWER(f.departureAirport.city.name) LIKE LOWER(CONCAT('%', :departureCity, '%'))) AND " +
+            "(:arrivalCity IS NULL OR LOWER(f.arrivalAirport.city.name) LIKE LOWER(CONCAT('%', :arrivalCity, '%'))) AND " +
+            "(:departureAirportName IS NULL OR LOWER(f.departureAirport.name) LIKE LOWER(CONCAT('%', :departureAirportName, '%'))) AND " +
+            "(:arrivalAirportName IS NULL OR LOWER(f.arrivalAirport.name) LIKE LOWER(CONCAT('%', :arrivalAirportName, '%'))) AND " +
+            "(:departureAirportCode IS NULL OR UPPER(f.departureAirport.code) = UPPER(:departureAirportCode)) AND " +
+            "(:arrivalAirportCode IS NULL OR UPPER(f.arrivalAirport.code) = UPPER(:arrivalAirportCode)) AND " +
+            "(:airlineName IS NULL OR LOWER(f.aircraft.airline.name) LIKE LOWER(CONCAT('%', :airlineName, '%'))) " +
+            "ORDER BY f.departureTime ASC") // Hardcoded sorting
+    List<Flight> searchFlights(
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate,
+            @Param("departureCity") String departureCity,
+            @Param("arrivalCity") String arrivalCity,
+            @Param("departureAirportName") String departureAirportName,
+            @Param("arrivalAirportName") String arrivalAirportName,
+            @Param("departureAirportCode") String departureAirportCode,
+            @Param("arrivalAirportCode") String arrivalAirportCode,
+            @Param("airlineName") String airlineName
+    );
+
 }

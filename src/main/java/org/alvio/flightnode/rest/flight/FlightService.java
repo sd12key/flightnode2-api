@@ -42,13 +42,32 @@ public class FlightService {
         return result.get();
     }
 
-    public List<Flight> searchFlights(LocalDate startDate, String departureCity, String arrivalCity) {
-        if (departureCity == null || arrivalCity == null || startDate == null) {
-            throw new IllegalArgumentException("All parameters are required.");
-        }
+    public List<Flight> searchFlights(
+            LocalDate startDate,
+            LocalDate endDate,
+            String departureCity,
+            String arrivalCity,
+            String departureAirportName,
+            String arrivalAirportName,
+            String departureAirportCode,
+            String arrivalAirportCode,
+            String airlineName) {
 
-        LocalDateTime from = startDate.atStartOfDay();
-        return flightRepository.searchByCitiesAndStartDate(from, departureCity, arrivalCity);
+        // Convert dates to LocalDateTime
+        LocalDateTime startDateTime = startDate != null ? startDate.atStartOfDay() : null;
+        LocalDateTime endDateTime = endDate != null ? endDate.atTime(23, 59, 59) : null;
+
+        return flightRepository.searchFlights(
+                startDateTime,
+                endDateTime,
+                departureCity,
+                arrivalCity,
+                departureAirportName,
+                arrivalAirportName,
+                departureAirportCode,
+                arrivalAirportCode,
+                airlineName
+        );
     }
 
     private void validateNewFlight(Flight flight) {

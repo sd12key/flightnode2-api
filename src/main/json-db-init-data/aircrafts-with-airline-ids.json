@@ -1,0 +1,62 @@
+[
+    {
+        "type": "Boeing 737-800",
+        "airline": { "id": 1 },
+        "capacity": 166
+    },
+    {
+        "type": "Boeing 757-200",
+        "airline": { "id": 1 },
+        "capacity": 169
+    },
+    {
+        "type": "Boeing 787-9 Dreamliner",
+        "airline": { "id": 1 },
+        "capacity": 257
+    },
+    {
+        "type": "Airbus A320",
+        "airline": { "id": 1 },
+        "capacity": 150
+    },
+    {
+        "type": "Boeing 737-900ER",
+        "airline": { "id": 2 },
+        "capacity": 180
+    },
+    {
+        "type": "Airbus A321",
+        "airline": { "id": 2 },
+        "capacity": 192
+    },
+    {
+        "type": "Boeing 767-300ER",
+        "airline": { "id": 2 },
+        "capacity": 218
+    },
+    {
+        "type": "Airbus A350-900",
+        "airline": { "id": 2 },
+        "capacity": 306
+    },
+    {
+        "type": "Boeing 737-800",
+        "airline": { "id": 3 },
+        "capacity": 160
+    },
+    {
+        "type": "Boeing 777-200",
+        "airline": { "id": 3 },
+        "capacity": 273
+    },
+    {
+        "type": "Airbus A321neo",
+        "airline": { "id": 3 },
+        "capacity": 196
+    },
+    {
+        "type": "Boeing 787-8 Dreamliner",
+        "airline": { "id": 3 },
+        "capacity": 234
+    }
+]

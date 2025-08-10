@@ -2,6 +2,7 @@ package org.alvio.flightnode.rest.aircraft;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.alvio.flightnode.rest.airline.Airline;
 import org.alvio.flightnode.rest.flight.Flight;
 
 import java.util.ArrayList;
@@ -24,14 +25,10 @@ public class Aircraft {
     @Column(nullable = false, length = 100)
     private String type;
 
-    @NotBlank(message = "Airline name is required.")
-    @Pattern(
-            regexp = "^[A-Za-z0-9 &'’\\-.,()]+$",
-            message = "Invalid airline name (only letters, numbers, spaces, hyphens, apostrophes, and basic punctuation allowed)."
-    )
-    @Size(max = 100, message = "Maximum 100 characters.")
-    @Column(nullable = false, length = 100)
-    private String airlineName;
+    @NotNull(message = "Airline is required.")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "airline_id", nullable = false)
+    private Airline airline;
 
     @Min(value = 1, message = "Capacity must be a positive number.")
     @Column(nullable = false)
@@ -56,12 +53,12 @@ public class Aircraft {
         this.type = type.trim();
     }
 
-    public String getAirlineName() {
-        return airlineName;
+    public Airline getAirline() {
+        return airline;
     }
 
-    public void setAirlineName(String airlineName) {
-        this.airlineName = airlineName.trim();
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
     public int getCapacity() {

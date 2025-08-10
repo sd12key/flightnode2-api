@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api")
@@ -40,17 +42,46 @@ public class FlightController {
 
     @GetMapping("/flight-search")
     public ResponseEntity<?> searchFlights(
-            @RequestParam(name = "starting-date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startingDate,
-            @RequestParam(name = "departure-city") String departureCity,
-            @RequestParam(name = "arrival-city") String arrivalCity ) {
+            @RequestParam(name = "start-date", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 
-        List<Flight> result = flightService.searchFlights(startingDate, departureCity, arrivalCity);
+            @RequestParam(name = "end-date", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+
+            @RequestParam(name = "departure-city", required = false) String departureCity,
+            @RequestParam(name = "arrival-city", required = false) String arrivalCity,
+            @RequestParam(name = "departure-airport-name", required = false) String departureAirportName,
+            @RequestParam(name = "arrival-airport-name", required = false) String arrivalAirportName,
+            @RequestParam(name = "departure-airport-code", required = false) String departureAirportCode,
+            @RequestParam(name = "arrival-airport-code", required = false) String arrivalAirportCode,
+            @RequestParam(name = "airline-name", required = false) String airlineName) {
+
+        if (Stream.of(startDate, endDate, departureCity, arrivalCity,
+                        departureAirportName, arrivalAirportName,
+                        departureAirportCode, arrivalAirportCode, airlineName)
+                .allMatch(Objects::isNull)) {
+            return ResponseEntity.badRequest()
+                    .body("At least one search parameter is required");
+        }
+
+        List<Flight> result = flightService.searchFlights(
+                startDate,
+                endDate,
+                departureCity,  // No case conversion needed
+                arrivalCity,
+                departureAirportName,
+                arrivalAirportName,
+                departureAirportCode,  // Repository will uppercase
+                arrivalAirportCode,
+                airlineName
+        );
+
         List<FlightDTO> dtoList = result.stream()
                 .map(FlightMapper::toFlightDTO)
                 .toList();
+
         return ResponseEntity.ok(dtoList);
     }
-
 
     @PostMapping("/flight")
     public ResponseEntity<?> addFlight(@Valid @RequestBody Flight flight) {
