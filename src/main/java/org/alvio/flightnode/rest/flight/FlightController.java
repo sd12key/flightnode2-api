@@ -50,13 +50,15 @@ public class FlightController {
 
             @RequestParam(name = "departure-city", required = false) String departureCity,
             @RequestParam(name = "arrival-city", required = false) String arrivalCity,
+            @RequestParam(name = "departure-city-state", required = false) String departureCityState,
+            @RequestParam(name = "arrival-city-state", required = false) String arrivalCityState,
             @RequestParam(name = "departure-airport-name", required = false) String departureAirportName,
             @RequestParam(name = "arrival-airport-name", required = false) String arrivalAirportName,
             @RequestParam(name = "departure-airport-code", required = false) String departureAirportCode,
             @RequestParam(name = "arrival-airport-code", required = false) String arrivalAirportCode,
             @RequestParam(name = "airline-name", required = false) String airlineName) {
 
-        if (Stream.of(startDate, endDate, departureCity, arrivalCity,
+        if (Stream.of(startDate, endDate, departureCity, arrivalCity, departureCityState, arrivalCityState,
                         departureAirportName, arrivalAirportName,
                         departureAirportCode, arrivalAirportCode, airlineName)
                 .allMatch(Objects::isNull)) {
@@ -67,11 +69,13 @@ public class FlightController {
         List<Flight> result = flightService.searchFlights(
                 startDate,
                 endDate,
-                departureCity,  // No case conversion needed
+                departureCity,
                 arrivalCity,
+                departureCityState,
+                arrivalCityState,
                 departureAirportName,
                 arrivalAirportName,
-                departureAirportCode,  // Repository will uppercase
+                departureAirportCode,
                 arrivalAirportCode,
                 airlineName
         );
@@ -82,6 +86,7 @@ public class FlightController {
 
         return ResponseEntity.ok(dtoList);
     }
+
 
     @PostMapping("/flight")
     public ResponseEntity<?> addFlight(@Valid @RequestBody Flight flight) {

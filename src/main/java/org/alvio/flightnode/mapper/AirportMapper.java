@@ -34,7 +34,7 @@ public class AirportMapper {
 
     public static AirportSummaryDTO toSummary(Airport airport) {
         return new AirportSummaryDTO(airport.getId(), airport.getName(),
-                airport.getCode(), airport.getCity().getName());
+                airport.getCode(), airport.getCity().getName(), airport.getCity().getState());
     }
 }
 

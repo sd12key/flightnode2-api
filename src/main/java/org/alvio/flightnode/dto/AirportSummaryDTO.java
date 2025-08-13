@@ -5,12 +5,14 @@ public class AirportSummaryDTO {
     private String name;
     private String code;
     private String cityName;
+    private String cityState;
 
-    public AirportSummaryDTO(Long id, String name, String code, String cityName) {
+    public AirportSummaryDTO(Long id, String name, String code, String cityName, String cityState) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.cityName = cityName;
+        this.cityState = cityState;
     }
 
     public Long getId() {
@@ -26,4 +28,6 @@ public class AirportSummaryDTO {
     }
 
     public String getCityName() { return cityName; }
+
+    public String getCityState() { return cityState; }
 }
