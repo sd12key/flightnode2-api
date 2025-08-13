@@ -16,7 +16,8 @@ public class FlightMapper {
                 flight.getDepartureAirport().getId(),
                 flight.getDepartureAirport().getName(),
                 flight.getDepartureAirport().getCode(),
-                flight.getDepartureAirport().getCity().getName()
+                flight.getDepartureAirport().getCity().getName(),
+                flight.getDepartureAirport().getCity().getState()
 
         );
 
@@ -28,7 +29,8 @@ public class FlightMapper {
                 flight.getArrivalAirport().getId(),
                 flight.getArrivalAirport().getName(),
                 flight.getArrivalAirport().getCode(),
-                flight.getArrivalAirport().getCity().getName()
+                flight.getArrivalAirport().getCity().getName(),
+                flight.getArrivalAirport().getCity().getState()
         );
 
         GateSummaryDTO arrivalGateDto = new GateSummaryDTO (flight.getArrivalGate().getId(),
