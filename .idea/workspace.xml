@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24b639ea-3f0d-43b3-a3f3-2636008e2a32" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportSummaryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/dto/AirportSummaryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/AirportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/mapper/FlightMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/flight/FlightService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/alvio/flightnode/rest/airport/AirportController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +42,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.flightnode2-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.RestServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;some-additions&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.flightnode2-api [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.RestServiceApplication.executor": "Run",
+    "git-widget-placeholder": "gets-airports-mod",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -86,6 +80,7 @@
       <workItem from="1754855243931" duration="710000" />
       <workItem from="1754932331410" duration="8964000" />
       <workItem from="1754950924411" duration="16619000" />
+      <workItem from="1755102724032" duration="8873000" />
     </task>
     <servers />
   </component>
