@@ -19,10 +19,12 @@ public class AirportController {
     private AirportService airportService;
 
     @GetMapping("/airports")
-    public ResponseEntity<?> getAllAirports() {
-        List<Airport> airports = airportService.getAllAirports();
+    public ResponseEntity<?> getAllAirports(
+            @RequestParam(name = "show-gates", required = false, defaultValue = "false") boolean showGates
+    ) {
+        List<Airport> airports = airportService.getAllAirports(); // No change to service call
         List<AirportDTO> airportsDto = airports.stream()
-                .map(AirportMapper::toAirportDTO)
+                .map(airport -> AirportMapper.toAirportDTO(airport, showGates)) // Added parameter
                 .toList();
         return ResponseEntity.ok(airportsDto);
     }
