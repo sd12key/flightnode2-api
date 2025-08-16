@@ -17,7 +17,7 @@ public class AdminController {
 
     @DeleteMapping("/reset")
     public ResponseEntity<?> resetAndShutdown() {
-        jdbcTemplate.execute("DROP TABLE IF EXISTS passenger_flight, flight, passenger, airport, gate, city, aircraft");
+        jdbcTemplate.execute("DROP TABLE IF EXISTS passenger_flight, flight, passenger, airport, airline, gate, city, aircraft");
 
         Thread shutdownThread = new Thread(() -> {
             try {
